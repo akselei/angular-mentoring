@@ -1,0 +1,22 @@
+@import "variables";
+@import "mixin";
+
+.courses {
+  &__content {
+    width: $main-size;
+    margin: 0 auto;
+
+    &_load-more-link {
+      display: block;
+      text-align: center;
+      text-transform: uppercase;
+      height: 48px;
+      margin-top: 24px;
+      line-height: 48px;
+      color: $soft-blue;
+      font-size: 12px;
+
+      @include panel;
+    }
+  }
+}

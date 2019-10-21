@@ -19,4 +19,4 @@ export * from './authorization/logout/logout.component';
 export * from './courses/search/search.component';
 export * from './courses/button-courses/button-courses.component';
 export * from './courses/course-item/course-item.component';
-export * from './courses/courses.component'
+export * from './courses/courses.component';

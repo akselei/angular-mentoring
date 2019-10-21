@@ -27,8 +27,14 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styling"
+              ]
+            },
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/normalize.css/normalize.css"
             ],
             "scripts": []
           },

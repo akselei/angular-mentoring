@@ -1,5 +1,3 @@
-import { Component, OnInit } from '@angular/core';
-
 export interface ICourse {
   id: number;
   title: string;
@@ -21,19 +19,5 @@ export class Course implements ICourse {
     this.data = data;
     this.description = description;
     this.duration = duration;
-  }
-}
-
-@Component({
-  selector: 'app-course-item',
-  templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.scss']
-})
-
-export class CourseItemComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit() {
-    const item: ICourse = new Course(1, 'Test title', '22/55/7777', 'Lorem Ipsum', '90 min');
   }
 }

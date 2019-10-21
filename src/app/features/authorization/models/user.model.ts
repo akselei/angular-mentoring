@@ -1,5 +1,3 @@
-import { Component, OnInit } from '@angular/core';
-
 export interface IUser {
   id?: number;
   firstName: string;
@@ -15,20 +13,5 @@ export class User implements IUser {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
-  }
-}
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
-})
-
-export class LoginComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-    const user: IUser = new User('John', 'Dou', 1);
   }
 }

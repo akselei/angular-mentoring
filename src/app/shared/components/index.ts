@@ -1,19 +1,16 @@
-import { LoginComponent } from './authorization/login/login.component';
-import { LogoutComponent } from './authorization/logout/logout.component';
-import { SearchComponent } from './search/search.component';
-import { ButtonCoursesComponent } from '@shared/components/button-courses/button-courses.component';
-import { CourseItemComponent } from '@shared/components/course-item/course-item.component';
+import { HeaderComponent } from './header/header.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { CoursesComponent } from './courses/courses.component';
+import { FooterComponent } from './footer/footer.component';
 
 export const components: any[] = [
-  LoginComponent,
-  LogoutComponent,
-  SearchComponent,
-  ButtonCoursesComponent,
-  CourseItemComponent
+  HeaderComponent,
+  BreadcrumbsComponent,
+  CoursesComponent,
+  FooterComponent
 ];
 
-export * from './authorization/login/login.component';
-export * from './authorization/logout/logout.component';
-export * from './search/search.component';
-export * from './button-courses/button-courses.component';
-export * from './course-item/course-item.component';
+export * from './header/header.component';
+export * from './breadcrumbs/breadcrumbs.component';
+export * from './courses/courses.component';
+export * from './footer/footer.component';

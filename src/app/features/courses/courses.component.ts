@@ -53,7 +53,7 @@ export class CoursesComponent implements OnInit {
         console.log('course id ' + id);
     }
 
-    onLoadMorehandler(): void {
+    onLoadMoreHandler(): void {
         console.log('Load More Button Works!');
     }
 }

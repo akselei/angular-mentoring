@@ -1,6 +1,6 @@
 @import "variables";
 
-@mixin button($size, $color, $icon) {
+@mixin button($size, $color: $dark-sky-blue, $icon: false) {
   background: $color;
   color: $white;
   font-weight: 400;
@@ -61,4 +61,31 @@
   background: $white;
   border-radius: 8px;
   box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+}
+
+@mixin input($height, $icon: false) {
+  height: $height;
+  border-radius: 3px;
+  border: solid 1px $border-gray;
+  background: $white;
+  display: inline-block;
+
+  @if $icon == left or $icon == left or $icon == true{
+    position: relative;
+
+    .search__input {
+      height: $height / 2;
+      border: 0;
+      background: transparent;
+      padding: $height / 4 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  @if $icon == left {
+    padding-left: 40px;
+  }
 }

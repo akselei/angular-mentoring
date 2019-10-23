@@ -1,8 +1,12 @@
 <div class="courses__content">
   <app-button-courses></app-button-courses>
-  <app-course-item></app-course-item>
+  <app-course-item
+          *ngFor="let courseListItem of courseList"
+          [courseListItem]="courseListItem"
+          (onDeleteCourse)="deleteCourseById($event)"
+  ></app-course-item>
 
-  <a href="#" title="Load More Button" class="courses__content_load-more-link">
+  <a title="Load More Button" class="courses__content_load-more-link" routerLink="" (click)="onLoadMorehandler()">
     Load More
   </a>
 </div>

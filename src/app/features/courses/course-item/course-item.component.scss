@@ -6,6 +6,7 @@
     @include panel;
     padding: 24px;
     display: flex;
+    margin-bottom: 24px;
 
     &_content {
       flex-basis: 80%;

@@ -1,24 +1,20 @@
 <div class="course__item">
   <div class="course__item_content">
     <div class="course__item_header">
-      <h2 class="course__item_title">Video Course 1. Name tag</h2>
+      <h2 class="course__item_title">{{courseListItem.title}}</h2>
       <div class="course__item_info">
         <div class="course__item_duration">
           <i class="icon"></i>
-          1h 28 min
+          {{courseListItem.duration}}
         </div>
         <div class="course__item_data">
           <i class="icon"></i>
-          9 Nov, 2018
+          {{courseListItem.data}}
         </div>
       </div>
     </div>
     <div class="course__item_description">
-      Learn about where you can find course descriptions, what information they include, how they work,
-      and details about various components of a course description.
-      Course descriptions report information about a university or college's classes.
-      They're published both in course catalogs that outline degree requirements and in course
-      schedules that contain descriptions for all courses offered during a particular semester.
+      {{courseListItem.description}}
     </div>
   </div>
   <div class="course__item_buttons">
@@ -26,7 +22,7 @@
       <i class="icon"></i>
       Edit
     </button>
-    <button class="button__delete">
+    <button class="button__delete" (click)="onDeleteCourseItem()">
       <i class="icon"></i>
       Delete
     </button>

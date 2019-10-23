@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { AuthorizationComponent } from '../../modules/authorization/authorization.component';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  title = 'Angular mentoring Program';
 
   constructor() { }
 

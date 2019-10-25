@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ICourse, Course } from './models/courses.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

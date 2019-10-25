@@ -1,0 +1,44 @@
+@import "variables";
+@import "mixin";
+
+.search {
+    &__content {
+        width: $main-size;
+        margin: 0 auto;
+    }
+
+    &__form {
+        margin: 24px 0;
+
+        label {
+            @include input(46px, left);
+            margin-right: 6px;
+        }
+
+        .icon {
+            background-color: $steel;
+            mask-image: url("#{$iconLink}/search.svg");
+            mask-repeat: no-repeat;
+            mask-position: 0 0;
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+    }
+
+    &__input {
+        width: 320px;
+        &::placeholder {
+            color: $silver;
+        }
+    }
+}
+
+.button {
+    &__submit {
+        @include button(big, $sick-green);
+    }
+}

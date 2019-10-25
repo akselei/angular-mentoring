@@ -1,0 +1,102 @@
+@import "variables";
+@import "mixin";
+
+.course {
+  &__item {
+    @include panel;
+    padding: 24px;
+    display: flex;
+    margin-bottom: 24px;
+
+    &_content {
+      flex-basis: 80%;
+    }
+
+    &_buttons {
+      align-self: flex-end;
+      margin-left: auto;
+      margin-bottom: 25px;
+    }
+
+    &_description {
+      color: $slate-grey;
+      line-height: 24px;
+    }
+
+    &_title {
+      font-size: 24px;
+      line-height: 30px;
+      color: $dark;
+    }
+
+    &_header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    &_info {
+      font-size: 12px;
+      color: $cloudy-blue;
+      display: flex;
+      align-items: center;
+    }
+
+    &_duration,
+    &_data {
+      padding-left: 20px;
+      position: relative;
+      height: 15px;
+
+      .icon {
+        background-color: $cloudy-blue;
+        mask-repeat: no-repeat;
+        mask-position: 0 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    &_duration {
+      margin-right: 20px;
+      .icon {
+        mask-image: url("#{$iconLink}/clock.svg");
+      }
+    }
+
+    &_data {
+      .icon {
+        mask-image: url("#{$iconLink}/calendar-alt.svg");
+      }
+    }
+  }
+}
+
+.button {
+  &__edit,
+  &__delete {
+    @include button(small, $dark-sky-blue, true);
+
+    .icon {
+      top: 5px;
+      left: 15px;
+      background-color: $white;
+    }
+  }
+
+  &__edit {
+    .icon {
+      mask: url("#{$iconLink}/pen.svg") no-repeat 0 0;
+    }
+  }
+
+  &__delete {
+    margin-left: 12px;
+    .icon {
+      mask: url("#{$iconLink}/trash.svg") no-repeat 0 0;
+    }
+  }
+}

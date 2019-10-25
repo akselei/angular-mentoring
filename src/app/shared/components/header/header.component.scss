@@ -1,1 +1,16 @@
 @import "variables";
+
+.header {
+  &__logo {
+    &_link {
+      background: url("#{$iconLink}/logo.svg") no-repeat 0 15px;
+      width: 140px;
+      height: 64px;
+      display: block;
+    }
+  }
+
+  &__sighup {
+    display: flex;
+  }
+}

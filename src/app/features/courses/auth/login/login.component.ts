@@ -8,10 +8,19 @@ import { IUser, User } from '../models/user.model';
 })
 
 export class LoginComponent implements OnInit {
+  users: IUser[] = [
+    {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Dou'
+    }
+  ];
+
+  user: any = this.users[0];
 
   constructor() { }
 
   ngOnInit() {
-    const user: IUser = new User('John', 'Dou', 1);
+
   }
 }

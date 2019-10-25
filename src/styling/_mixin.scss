@@ -1,0 +1,91 @@
+@import "variables";
+
+@mixin button($size, $color: $dark-sky-blue, $icon: false) {
+  background: $color;
+  color: $white;
+  font-weight: 400;
+  border-radius: 3px;
+  padding: 0 20px;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: -0.1px;
+  position: relative;
+
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $white;
+  }
+
+  @if $size == small {
+    height: 24px;
+    font-size: 12px;
+    padding: 0 18px;
+    line-height: 24px;
+
+    @if $icon == true {
+      padding-left: 36px;
+    }
+
+    .icon {
+      width: 13px;
+      height: 13px;
+    }
+
+  } @else if $size == middle {
+    height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+
+    @if $icon == true {
+      padding-left: 48px;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+  } @else if $size == big {
+    height: 48px;
+    font-size: 18px;
+
+  } @else {
+    @error "Please set button size"
+  }
+}
+
+
+@mixin panel {
+  background: $white;
+  border-radius: 8px;
+  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+}
+
+@mixin input($height, $icon: false) {
+  height: $height;
+  border-radius: 3px;
+  border: solid 1px $border-gray;
+  background: $white;
+  display: inline-block;
+
+  @if $icon == left or $icon == right or $icon == true {
+    position: relative;
+
+    .search__input {
+      height: $height / 2;
+      border: 0;
+      background: transparent;
+      padding: $height / 4 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  @if $icon == left {
+    padding-left: 40px;
+  }
+}

@@ -1,0 +1,26 @@
+@import "variables";
+
+.login {
+    &__content {
+        position: relative;
+        padding-left: 20px;
+        height: 18px;
+        margin-top: 23px;
+        margin-right: 25px;
+
+        .icon {
+            position: absolute;
+            width: 10px;
+            height: 12px;
+            left: 0;
+            background-color: $white;
+            mask-image: url("#{$iconLink}/user.svg");
+            mask-position: 0 0;
+            mask-repeat: no-repeat;
+        }
+    }
+
+    &__info {
+        color: $white;
+    }
+}

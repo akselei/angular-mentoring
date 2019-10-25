@@ -1,1 +1,30 @@
-<p>course Item works!</p>
+<div class="course__item">
+  <div class="course__item_content">
+    <div class="course__item_header">
+      <h2 class="course__item_title">{{courseListItem.title}}</h2>
+      <div class="course__item_info">
+        <div class="course__item_duration">
+          <i class="icon"></i>
+          {{courseListItem.duration}}
+        </div>
+        <div class="course__item_data">
+          <i class="icon"></i>
+          {{courseListItem.data}}
+        </div>
+      </div>
+    </div>
+    <div class="course__item_description">
+      {{courseListItem.description}}
+    </div>
+  </div>
+  <div class="course__item_buttons">
+    <button class="button__edit">
+      <i class="icon"></i>
+      Edit
+    </button>
+    <button class="button__delete" (click)="deleteCourseItem()">
+      <i class="icon"></i>
+      Delete
+    </button>
+  </div>
+</div>

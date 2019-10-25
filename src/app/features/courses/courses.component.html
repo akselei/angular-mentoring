@@ -3,10 +3,10 @@
   <app-course-item
           *ngFor="let courseListItem of courseList"
           [courseListItem]="courseListItem"
-          (onDeleteCourse)="deleteCourseById($event)"
+          (deleteCourse)="deleteCourseById($event)"
   ></app-course-item>
 
-  <a title="Load More Button" class="courses__content_load-more-link" routerLink="" (click)="onLoadMoreHandler()">
+  <a title="Load More Button" class="courses__content_load-more-link" routerLink="" (click)="loadMoreHandler()">
     Load More
   </a>
 </div>

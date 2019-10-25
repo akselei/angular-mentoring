@@ -4,6 +4,7 @@ import { SearchComponent } from './courses/search/search.component';
 import { ButtonCoursesComponent } from '@features/courses/button-courses/button-courses.component';
 import { CourseItemComponent } from '@features/courses/course-item/course-item.component';
 import { CoursesComponent } from '@features/courses/courses.component';
+import { BreadcrumbsComponent } from '@features/courses/breadcrumbs/breadcrumbs.component';
 
 export const components: any[] = [
   LoginComponent,
@@ -11,7 +12,8 @@ export const components: any[] = [
   SearchComponent,
   ButtonCoursesComponent,
   CourseItemComponent,
-  CoursesComponent
+  CoursesComponent,
+  BreadcrumbsComponent
 ];
 
 export * from './authorization/login/login.component';
@@ -20,3 +22,4 @@ export * from './courses/search/search.component';
 export * from './courses/button-courses/button-courses.component';
 export * from './courses/course-item/course-item.component';
 export * from './courses/courses.component';
+export * from './courses/breadcrumbs/breadcrumbs.component';

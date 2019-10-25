@@ -8,14 +8,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export class CourseItemComponent implements OnInit {
   @Input() courseListItem;
-  @Output() onDeleteCourse = new EventEmitter<number>();
+  @Output() deleteCourse = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {
 
   }
 
-  onDeleteCourseItem(): void {
-    this.onDeleteCourse.emit(this.courseListItem.id);
+  deleteCourseItem(): void {
+    this.deleteCourse.emit(this.courseListItem.id);
   }
 }

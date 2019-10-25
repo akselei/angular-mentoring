@@ -70,7 +70,7 @@
   background: $white;
   display: inline-block;
 
-  @if $icon == left or $icon == left or $icon == true{
+  @if $icon == left or $icon == right or $icon == true {
     position: relative;
 
     .search__input {

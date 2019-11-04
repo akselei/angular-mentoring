@@ -17,6 +17,20 @@ describe('CourseItemComponent', () => {
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.courseListItem = {
+      id: 1,
+      title: 'Title',
+      duration: '1h 28 min',
+      date: '9 Nov, 2018',
+      description: 'text'
+    };
+  });
+
+  it('should emit data to parent component', () => {
+    spyOn(component.deleteCourse, 'emit');
+    component.deleteCourseItem();
+
+    expect(component.deleteCourse.emit).toHaveBeenCalledWith(1);
   });
 
   it('should create', () => {

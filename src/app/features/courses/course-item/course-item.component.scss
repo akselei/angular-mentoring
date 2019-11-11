@@ -7,6 +7,9 @@
     padding: 24px;
     display: flex;
     margin-bottom: 24px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
 
     &_content {
       flex-basis: 80%;
@@ -72,6 +75,29 @@
         mask-image: url("#{$iconLink}/calendar-alt.svg");
       }
     }
+
+    &_rating {
+      width: 68px;
+      margin-right: 10px;
+    }
+  }
+
+  &__rate {
+    &-one,
+    &-two,
+    &-three,
+    &-four,
+    &-five {
+      mask-image: url("#{$iconLink}/star.svg");
+      background-color: $yellow;
+      height: 12px;
+    }
+
+    &-one { width: 12px; }
+    &-two { width: 28px; }
+    &-three { width: 40px; }
+    &-four { width: 54px; }
+    &-five { width: 68px; }
   }
 }
 

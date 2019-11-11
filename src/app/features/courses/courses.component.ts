@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import { ICourse, Course } from './models/courses.model';
+import { Component, OnInit } from '@angular/core';
+import { ICourse } from './models/courses.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,10 @@ import { Observable } from 'rxjs';
 
 export class CoursesComponent implements OnInit {
     courseList: ICourse[];
+    searchText: string;
     courseData = 'assets/fakeCourseData.json';
+
+    dataIsAvailable = true;
 
     constructor(private http: HttpClient) { }
 
@@ -31,6 +34,10 @@ export class CoursesComponent implements OnInit {
 
     public getJSON(): Observable<any> {
         return this.http.get(this.courseData);
+    }
+
+    public searchCourse(data: string): void {
+        this.searchText = data;
     }
 }
 

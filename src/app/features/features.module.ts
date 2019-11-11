@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DirectivesModule } from '@core/directives/directives.module';
+import { PipesModule } from '@core/pipes/pipes.module';
 
 import * as fromComponents from '.';
 
@@ -9,7 +11,9 @@ import * as fromComponents from '.';
   exports: [...fromComponents.components],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    DirectivesModule,
+    PipesModule
   ]
 })
 export class FeaturesModule { }

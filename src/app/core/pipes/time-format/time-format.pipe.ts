@@ -10,11 +10,7 @@ export class TimeFormatPipe implements PipeTransform {
     const hours = Math.floor(time / 60);
     const minutes = Math.floor(time) % 60;
 
-    if (hours) {
-      formatted += `${hours}h ${minutes} min`;
-    } else {
-      formatted += `${minutes} min`;
-    }
+    formatted += hours ? `${hours}h ${minutes} min` : `${minutes} min`;
 
     return formatted;
   }

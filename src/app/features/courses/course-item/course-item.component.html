@@ -1,30 +1,41 @@
-<div class="course__item">
-  <div class="course__item_content">
-    <div class="course__item_header">
-      <h2 class="course__item_title">{{courseListItem?.title}}</h2>
-      <div class="course__item_info">
-        <div class="course__item_duration">
-          <i class="icon"></i>
-          {{courseListItem?.duration}}
+<div class="course__item"
+     [appCourseValidation] = "courseListItem.date">
+
+    <div class="course__item_content">
+        <div class="course__item_header">
+            <h2 class="course__item_title">{{courseListItem?.title | uppercase}}</h2>
+            <div class="course__item_info">
+                <div class="course__item_rating" *ngIf = "courseListItem.rate">
+                    <div [ngClass] = "{
+                    'course__rate-one':courseListItem.rate === 1,
+                    'course__rate-two':courseListItem.rate === 2,
+                    'course__rate-three':courseListItem.rate === 3,
+                    'course__rate-four':courseListItem.rate === 4,
+                    'course__rate-five':courseListItem.rate === 5
+                    }"></div>
+                </div>
+                <div class="course__item_duration">
+                    <i class="icon"></i>
+                    {{courseListItem?.duration | timeFormat}}
+                </div>
+                <div class="course__item_data">
+                    <i class="icon"></i>
+                    {{courseListItem?.date}}
+                </div>
+            </div>
         </div>
-        <div class="course__item_data">
-          <i class="icon"></i>
-          {{courseListItem?.data}}
+        <div class="course__item_description">
+            {{courseListItem?.description}}
         </div>
-      </div>
     </div>
-    <div class="course__item_description">
-      {{courseListItem?.description}}
+    <div class="course__item_buttons">
+        <button class="button__edit">
+            <i class="icon"></i>
+            Edit
+        </button>
+        <button class="button__delete" (click)="deleteCourseItem()">
+            <i class="icon"></i>
+            Delete
+        </button>
     </div>
-  </div>
-  <div class="course__item_buttons">
-    <button class="button__edit">
-      <i class="icon"></i>
-      Edit
-    </button>
-    <button class="button__delete" (click)="deleteCourseItem()">
-      <i class="icon"></i>
-      Delete
-    </button>
-  </div>
 </div>

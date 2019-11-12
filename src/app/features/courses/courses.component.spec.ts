@@ -6,7 +6,7 @@ import { SearchComponent } from '@features/courses/search/search.component';
 import { ButtonCoursesComponent } from '@features/courses/button-courses/button-courses.component';
 import { CourseItemComponent } from '@features/courses/course-item/course-item.component';
 import { FormsModule } from '@angular/forms';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;

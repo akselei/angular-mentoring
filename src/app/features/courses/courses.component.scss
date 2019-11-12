@@ -21,4 +21,15 @@
       @include panel;
     }
   }
+
+  &__list-empty {
+    @include panel;
+
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    height: 48px;
+    margin-top: 24px;
+    line-height: 48px;
+  }
 }

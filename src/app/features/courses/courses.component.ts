@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import { CourseService } from '@core/services/course/course.service';
 import { ICourse } from './models/courses.model';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-courses',
@@ -9,34 +9,46 @@ import { Observable } from 'rxjs';
     styleUrls: ['./courses.component.scss']
 })
 
-export class CoursesComponent implements OnInit {
+export class CoursesComponent implements OnInit, OnDestroy {
     courseList: ICourse[];
+    getItemId: Subscription;
     searchText: string;
-    courseData = 'assets/fakeCourseData.json';
 
     dataIsAvailable = true;
 
-    constructor(private http: HttpClient) { }
+    constructor(private courseService: CourseService) { }
 
     ngOnInit() {
-        this.getJSON().subscribe(data => {
+        this.courseService.getData().subscribe((data: ICourse[]) => {
             this.courseList = data;
+        });
+        this.setCoursesList();
+    }
+
+    ngOnDestroy() {
+        this.getItemId.unsubscribe();
+    }
+
+    setCoursesList(): void {
+        this.getItemId = this.courseService.getId().subscribe( key => {
+            const index = this.courseList.findIndex(item => item.id === key.itemId);
+            this.courseList.splice(index, 1);
         });
     }
 
-    deleteCourseById(id): void {
-        console.log('course id ' + id);
+    openDeleteDialog(id): void {
+        this.courseService.deleteDialogItem(id);
+    }
+
+    editCourse(): void {
+        this.courseService.editItem();
     }
 
     loadMoreHandler(): void {
         console.log('Load More Button Works!');
     }
 
-    public getJSON(): Observable<any> {
-        return this.http.get(this.courseData);
-    }
-
-    public searchCourse(data: string): void {
+    searchCourse(data: string): void {
         this.searchText = data;
     }
 }

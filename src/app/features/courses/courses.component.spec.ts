@@ -42,10 +42,10 @@ describe('CoursesComponent', () => {
   });
 
   it('should show console log for delete item', () => {
-      spyOn(component, 'deleteCourseById');
+      spyOn(component, 'openDeleteDialog');
 
-      component.deleteCourseById(1);
-      expect(component.deleteCourseById).toHaveBeenCalledWith(1);
+      component.openDeleteDialog(1);
+      expect(component.openDeleteDialog).toHaveBeenCalledWith(1);
   });
 
   it('should return console log for Load More function', () => {
@@ -56,21 +56,4 @@ describe('CoursesComponent', () => {
 
       expect(component.loadMoreHandler).toHaveBeenCalled();
   });
-
-  it('getJSON() should http GET courseList', () => {
-
-      const courseList = [
-          {
-              id: 1,
-              title: 'Title',
-              duration: '1h 28 min',
-              data: '9 Nov, 2018',
-              description: 'Hello'
-          }
-      ];
-
-      component.getJSON().subscribe((res) => {
-          expect(res).toEqual(courseList);
-      });
-    });
 });

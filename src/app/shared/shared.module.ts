@@ -10,6 +10,6 @@ import * as fromComponents from './components';
     CommonModule,
     FeaturesModule
   ],
-  exports: [...fromComponents.components],
+  exports: [...fromComponents.components]
 })
 export class SharedModule { }

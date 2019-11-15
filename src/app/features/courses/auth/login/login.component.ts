@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser, User } from '../models/user.model';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,19 +8,18 @@ import { IUser, User } from '../models/user.model';
 })
 
 export class LoginComponent implements OnInit {
-  users: IUser[] = [
-    {
-      id: 1,
-      firstName: 'John',
-      lastName: 'Dou'
-    }
-  ];
 
-  user: any = this.users[0];
+  loginForm = new FormGroup({
+    login: new FormControl(''),
+    password: new FormControl('')
+  });
 
   constructor() { }
 
   ngOnInit() {
+  }
 
+  onSubmit(): void {
+    console.log(this.loginForm.value);
   }
 }

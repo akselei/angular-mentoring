@@ -1,26 +1,77 @@
 @import "variables";
+@import "mixin";
 
 .login {
-    &__content {
-        position: relative;
-        padding-left: 20px;
-        height: 18px;
-        margin-top: 23px;
-        margin-right: 25px;
+    &__wrapper {
+        width: $main-size;
+        margin: 0 auto;
+        height: calc(100vh - 128px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .icon {
-            position: absolute;
-            width: 10px;
-            height: 12px;
-            left: 0;
-            background-color: $white;
-            mask-image: url("#{$iconLink}/user.svg");
-            mask-position: 0 0;
-            mask-repeat: no-repeat;
+    &__container {
+        @include panel;
+
+        padding: 25px;
+        width: 370px;
+        box-sizing: border-box;
+    }
+
+    &__content {
+        padding-top: 13px;
+    }
+
+    &__input {
+        @include input(34px);
+    }
+
+    &__form {
+        &_label,
+        &_title {
+            display: flex;
+        }
+        &_label {
+            flex-direction: column;
+            margin-top: 12px;
+        }
+
+        &_title {
+            justify-content: space-between;
+            margin-bottom: 9px;
+            line-height: 17px;
+        }
+
+        &_name {
+            color: $slate-grey;
+            font-weight: 600;
+        }
+        &_warn {
+            font-size: 12px;
+            color: $battleship-grey;
         }
     }
 
-    &__info {
-        color: $white;
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+    }
+
+    &__link {
+        color: $soft-blue-two;
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    &__button {
+        @include button(middle, $default-button-grey, false, $slate-grey);
+
+        &[disabled] {
+            cursor: not-allowed;
+            color: $strong-grey;
+        }
     }
 }

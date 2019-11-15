@@ -1,9 +1,9 @@
 @import "variables";
 
-@mixin button($size, $color: $dark-sky-blue, $icon: false) {
+@mixin button($size, $color: $dark-sky-blue, $icon: false, $text-color: $white) {
   background: $color;
-  color: $white;
-  font-weight: 400;
+  color: $text-color;
+  font-weight: 500;
   border-radius: 3px;
   padding: 0 20px;
   border: 0;
@@ -15,7 +15,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    color: $white;
+    color: $text-color;
   }
 
   @if $size == small {
@@ -83,9 +83,15 @@
         outline: none;
       }
     }
+  } @else {
+    padding: 0 12px;
   }
 
   @if $icon == left {
     padding-left: 40px;
+  }
+
+  &::placeholder {
+    color: $silver;
   }
 }

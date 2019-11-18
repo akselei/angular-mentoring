@@ -2,6 +2,7 @@
     <div class="login__container">
         <div class="login__header">
             <h2 class="login__title">Login</h2>
+            <div class="login__error">{{error}}</div>
         </div>
         <div class="login__content">
             <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -10,7 +11,7 @@
                         <span class="login__form_name">E-mail:</span>
                         <span class="login__form_warn">*required</span>
                     </span>
-                    <input type="text" placeholder="Enter e-mail" class="login__input" formControlName="login"/>
+                    <input type="text" placeholder="Enter e-mail" class="login__input" formControlName="email"/>
                 </label>
                 <label class="login__form_label">
                     <span class="login__form_title">

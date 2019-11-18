@@ -1,5 +1,4 @@
 import { LoginComponent } from '@features/courses/auth/login/login.component';
-import { LogoutComponent } from '@features/courses/auth/logout/logout.component';
 import { SearchComponent } from '@features/courses/search/search.component';
 import { ButtonCoursesComponent } from '@features/courses/button-courses/button-courses.component';
 import { CourseItemComponent } from '@features/courses/course-item/course-item.component';
@@ -10,7 +9,6 @@ import { EditDialogComponent } from '@features/dialogs/edit-dialog/edit-dialog.c
 
 export const components: any[] = [
   LoginComponent,
-  LogoutComponent,
   SearchComponent,
   ButtonCoursesComponent,
   CourseItemComponent,
@@ -21,7 +19,6 @@ export const components: any[] = [
 ];
 
 export * from '@features/courses/auth/login/login.component';
-export * from '@features/courses/auth/logout/logout.component';
 export * from '@features/courses/search/search.component';
 export * from '@features/courses/button-courses/button-courses.component';
 export * from '@features/courses/course-item/course-item.component';

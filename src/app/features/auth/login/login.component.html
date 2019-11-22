@@ -1,0 +1,30 @@
+<div class="login__wrapper">
+    <div class="login__container">
+        <div class="login__header">
+            <h2 class="login__title">Login</h2>
+            <div class="login__error">{{error}}</div>
+        </div>
+        <div class="login__content">
+            <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <label class="login__form_label">
+                    <span class="login__form_title">
+                        <span class="login__form_name">E-mail:</span>
+                        <span class="login__form_warn">*required</span>
+                    </span>
+                    <input type="text" placeholder="Enter e-mail" class="login__input" formControlName="email"/>
+                </label>
+                <label class="login__form_label">
+                    <span class="login__form_title">
+                        <span class="login__form_name">Password:</span>
+                        <span class="login__form_warn">*required</span>
+                    </span>
+                    <input type="password" placeholder="Enter password" class="login__input" formControlName="password"/>
+                </label>
+                <div class="login__actions">
+                    <a href="#" class="login__link">Forgot password?</a>
+                    <button class="login__button" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

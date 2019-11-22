@@ -16,6 +16,6 @@ export class CourseItemComponent implements OnInit {
   }
 
   deleteCourseItem(): void {
-    this.deleteCourse.emit(this.courseListItem.id);
+    this.deleteCourse.emit(this.courseListItem);
   }
 }

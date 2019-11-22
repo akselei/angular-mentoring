@@ -1,19 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { DirectivesModule } from '@core/directives/directives.module';
 import { PipesModule } from '@core/pipes/pipes.module';
+import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
+import { MatDialogModule } from '@angular/material';
+import { CourseService } from '@features/services/course/course.service';
 
 import * as fromComponents from '.';
 
 @NgModule({
-  declarations: [...fromComponents.components],
-  exports: [...fromComponents.components],
-  imports: [
-    CommonModule,
-    FormsModule,
-    DirectivesModule,
-    PipesModule
-  ]
+    declarations: [...fromComponents.components, ],
+    exports: [...fromComponents.components],
+    providers: [ CourseService ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DirectivesModule,
+        PipesModule,
+        MatDialogModule
+    ],
+    entryComponents: [
+        DeleteDialogComponent
+    ]
 })
 export class FeaturesModule { }

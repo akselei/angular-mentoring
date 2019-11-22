@@ -1,0 +1,56 @@
+@import "variables";
+@import "mixin";
+
+.dialog {
+    &__header {
+        position: relative;
+        background: $middle-grey;
+        height: 54px;
+        padding: 0 25px;
+    }
+    &__title {
+        font-size: 18px;
+        color: $slate-grey;
+        font-weight: 600;
+        line-height: 54px;
+    }
+    &__icon {
+        top: 20px;
+        right: 25px;
+        position: absolute;
+        cursor: pointer;
+        .one, .two {
+            border-radius: 1px;
+            width: 2px;
+            height: 16px;
+            background: $strong-grey;
+            display: block;
+            position: absolute;
+        }
+        .one {
+            transform: rotate(-45deg);
+        }
+        .two {
+            transform: rotate(45deg);
+        }
+    }
+
+    &__content {
+        color: $slate-grey;
+        padding: 25px;
+        line-height: 24px;
+    }
+    &__actions {
+        padding: 0 25px 25px 25px;
+        text-align: right;
+    }
+
+    &__button {
+        @include button(middle, $default-button-grey, false, $slate-grey);
+        margin-right: 18px;
+
+        &_submit {
+            @include button(middle, $sick-green, false);
+        }
+    }
+}

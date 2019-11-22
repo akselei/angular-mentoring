@@ -1,16 +1,52 @@
 @import "variables";
 
 .header {
-  &__logo {
-    &_link {
-      background: url("#{$iconLink}/logo.svg") no-repeat 0 15px;
-      width: 140px;
-      height: 64px;
-      display: block;
+    &__logo {
+        &_link {
+            background: url("#{$iconLink}/logo.svg") no-repeat 0 15px;
+            width: 140px;
+            height: 64px;
+            display: block;
+        }
     }
-  }
 
-  &__sighup {
-    display: flex;
-  }
+    &__sighup {
+        display: flex;
+    }
+}
+
+.login,
+.logout {
+    &__content {
+        position: relative;
+        padding-left: 20px;
+        height: 18px;
+        margin-top: 23px;
+        margin-right: 25px;
+
+        .icon {
+            position: absolute;
+            width: 10px;
+            height: 12px;
+            left: 0;
+            background-color: $white;
+            mask-image: url("#{$iconLink}/user.svg");
+            mask-position: 0 0;
+            mask-repeat: no-repeat;
+        }
+    }
+
+    &__info {
+        color: $white;
+    }
+
+    &__link {
+        color: $white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    &__user {
+        color: $white;
+    }
 }

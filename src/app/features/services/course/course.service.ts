@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ICourse } from '../../courses/models/courses.model';
+import { ICourse } from '@features/courses/models/courses.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from '@features/dialogs/delete-dialog/delete-dialog.component';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable()

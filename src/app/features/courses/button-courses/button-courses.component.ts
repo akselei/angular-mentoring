@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '@core/services/course/course.service';
+import { CourseService } from '@features/services/course/course.service';
 
 @Component({
   selector: 'app-button-courses',

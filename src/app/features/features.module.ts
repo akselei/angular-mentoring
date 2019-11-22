@@ -4,14 +4,15 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { DirectivesModule } from '@core/directives/directives.module';
 import { PipesModule } from '@core/pipes/pipes.module';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
-import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 import { MatDialogModule } from '@angular/material';
+import { CourseService } from '@features/services/course/course.service';
 
 import * as fromComponents from '.';
 
 @NgModule({
     declarations: [...fromComponents.components, ],
     exports: [...fromComponents.components],
+    providers: [ CourseService ],
     imports: [
         CommonModule,
         FormsModule,
@@ -21,8 +22,7 @@ import * as fromComponents from '.';
         MatDialogModule
     ],
     entryComponents: [
-        DeleteDialogComponent,
-        EditDialogComponent
+        DeleteDialogComponent
     ]
 })
 export class FeaturesModule { }

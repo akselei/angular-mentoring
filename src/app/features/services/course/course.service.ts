@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ICourse } from '@features/courses/models/courses.model';
+import { ICourse } from '../../courses/models/courses.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { DeleteDialogComponent } from '@features/dialogs/delete-dialog/delete-dialog.component';
-import { EditDialogComponent } from '@features/dialogs/edit-dialog/edit-dialog.component';
+import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
 import { Observable, Subject } from 'rxjs';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
+
 export class CourseService {
     courseData = 'assets/fakeCourseData.json';
     courseEvents = new Subject();
 
     deleteDialogRef: MatDialogRef<DeleteDialogComponent>;
-    editDialogRef: MatDialogRef<EditDialogComponent>;
 
     constructor(
         private http: HttpClient,
-        public deleteDialog: MatDialog,
-        public editDialog: MatDialog
+        public deleteDialog: MatDialog
     ) { }
 
     getData(): Observable<ICourse[]> {
@@ -55,9 +51,5 @@ export class CourseService {
 
     getItem(id) {
         console.log('get item by ID ' + id);
-    }
-
-    editItem() {
-        this.editDialogRef = this.editDialog.open(EditDialogComponent);
     }
 }

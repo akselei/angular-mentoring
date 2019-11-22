@@ -9,7 +9,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class CourseItemComponent implements OnInit {
   @Input() courseListItem;
   @Output() deleteCourse = new EventEmitter<number>();
-  @Output() editCourse = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {
@@ -18,9 +17,5 @@ export class CourseItemComponent implements OnInit {
 
   deleteCourseItem(): void {
     this.deleteCourse.emit(this.courseListItem);
-  }
-
-  editCourseItem(): void {
-    this.editCourse.emit(this.courseListItem);
   }
 }

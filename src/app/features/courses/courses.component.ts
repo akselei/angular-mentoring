@@ -1,5 +1,5 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import { CourseService } from '@core/services/course/course.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CourseService } from '@features/services/course/course.service';
 import { ICourse } from './models/courses.model';
 import { Subscription } from 'rxjs';
 
@@ -38,10 +38,6 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
     openDeleteDialog(id): void {
         this.courseService.deleteDialogItem(id);
-    }
-
-    editCourse(): void {
-        this.courseService.editItem();
     }
 
     loadMoreHandler(): void {

@@ -1,10 +1,10 @@
 <div class="header__logo">
-    <a href="/" title="{{title}}" class="header__logo_link"></a>
+    <a routerLink="/" title="{{title}}" class="header__logo_link"></a>
 </div>
 <div class="header__sighup">
     <div class="login__content">
         <i class="icon"></i>
-        <a class="login__link" href="/login" *ngIf="!user">Log In</a>
+        <a class="login__link" routerLink="/login" *ngIf="!user">Log In</a>
         <div class="login__user" *ngIf="user">
             {{user.email}}
         </div>

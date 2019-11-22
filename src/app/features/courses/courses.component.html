@@ -10,7 +10,6 @@
             *ngFor="let courseListItem of courseList | orderBy: 'date' | searchBy: searchText"
             [courseListItem]="courseListItem"
             (deleteCourse)="openDeleteDialog($event)"
-            (editCourse)="editCourse()"
     ></app-course-item>
 
     <a title="Load More Button" class="courses__content_load-more-link" routerLink=""

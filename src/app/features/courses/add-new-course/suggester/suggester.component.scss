@@ -1,0 +1,10 @@
+@import "variables";
+@import "mixin";
+
+.suggester {
+    &__input {
+        @include input(34px);
+
+        flex: 0 100%;
+    }
+}

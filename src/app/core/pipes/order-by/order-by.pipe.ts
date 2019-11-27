@@ -6,20 +6,23 @@ import { ICourse } from '@features/courses/models/courses.model';
 })
 export class OrderByPipe implements PipeTransform {
 
-    transform(array: ICourse[]): ICourse[] {
+    transform(array: ICourse[], orderBy: string): ICourse[] {
         array = array || [];
-        array.sort((a: ICourse, b: ICourse): any => {
-            const first: number = Date.parse(a.date);
-            const second: number = Date.parse(b.date);
 
-            if (first < second) {
-                return -1;
-            } else if (first > second) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
+        if (orderBy === 'date') {
+            array.sort((a: ICourse, b: ICourse): any => {
+                const first: number = Date.parse(a.date);
+                const second: number = Date.parse(b.date);
+
+                if (first < second) {
+                    return -1;
+                } else if (first > second) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+        }
 
         return array;
     }

@@ -19,7 +19,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
     constructor(private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getData().subscribe((data: ICourse[]) => {
+        this.courseService.getData().subscribe((data) => {
             this.courseList = data;
         });
         this.setCoursesList();
@@ -47,5 +47,9 @@ export class CoursesComponent implements OnInit, OnDestroy {
     searchCourse(data: string): void {
         this.searchText = data;
     }
+
+  addCourse(): void {
+    this.courseService.createItem();
+  }
 }
 

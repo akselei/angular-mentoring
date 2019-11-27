@@ -1,0 +1,8 @@
+@import "variables";
+@import "mixin";
+
+.duration {
+    &__input {
+        @include input(34px);
+    }
+}

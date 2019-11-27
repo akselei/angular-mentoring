@@ -32,4 +32,35 @@
     margin-top: 24px;
     line-height: 48px;
   }
+
+  &__button {
+    margin-bottom: 12px;
+    text-align: right;
+  }
+
+  &__add-course {
+    margin-left: auto;
+    display: inline-block;
+    text-decoration: none;
+
+    @include button(middle, $dark-sky-blue, true);
+
+    .one, .two {
+      border-radius: 1px;
+      width: 2px;
+      height: 16px;
+      background: $white;
+      display: block;
+      position: absolute;
+    }
+
+    .two {
+      transform: rotate(90deg);
+    }
+
+    .icon {
+      top: 10px;
+      left: 25px;
+    }
+  }
 }

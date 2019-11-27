@@ -6,11 +6,12 @@ import { PipesModule } from '@core/pipes/pipes.module';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { MatDialogModule } from '@angular/material';
 import { CourseService } from '@features/services/course/course.service';
+import {  RouterModule } from '@angular/router';
 
 import * as fromComponents from '.';
 
 @NgModule({
-    declarations: [...fromComponents.components, ],
+    declarations: [...fromComponents.components],
     exports: [...fromComponents.components],
     providers: [ CourseService ],
     imports: [
@@ -19,7 +20,8 @@ import * as fromComponents from '.';
         ReactiveFormsModule,
         DirectivesModule,
         PipesModule,
-        MatDialogModule
+        MatDialogModule,
+      RouterModule
     ],
     entryComponents: [
         DeleteDialogComponent

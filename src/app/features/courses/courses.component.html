@@ -3,8 +3,17 @@
 </div>
 
 <app-search (searchCourses)="searchCourse($event)"></app-search>
+
 <div class="courses__content">
-  <app-button-courses></app-button-courses>
+  <div class="courses__button">
+    <a class="courses__add-course" routerLink="/add-course">
+      <i class="icon">
+        <span class="one"></span>
+        <span class="two"></span>
+      </i>
+      Add course
+    </a>
+  </div>
   <div class="courses__list" *ngIf="dataIsAvailable">
     <app-course-item
             *ngFor="let courseListItem of courseList | orderBy: 'date' | searchBy: searchText"

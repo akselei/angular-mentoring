@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CourseService } from '@features/services/course/course.service';
 import { ICourse } from './models/courses.model';
 import { Subscription } from 'rxjs';
@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'app-courses',
     templateUrl: './courses.component.html',
-    styleUrls: ['./courses.component.scss']
+    styleUrls: ['./courses.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CoursesComponent implements OnInit, OnDestroy {
@@ -16,11 +17,15 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
     dataIsAvailable = true;
 
-    constructor(private courseService: CourseService) { }
+    constructor(
+        private courseService: CourseService,
+        private changeDetection: ChangeDetectorRef
+    ) { }
 
     ngOnInit() {
-        this.courseService.getData().subscribe((data: ICourse[]) => {
+        this.courseService.getData().subscribe((data) => {
             this.courseList = data;
+            this.changeDetection.markForCheck();
         });
         this.setCoursesList();
     }
@@ -31,8 +36,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
     setCoursesList(): void {
         this.getItemId = this.courseService.getId().subscribe( key => {
-            const index = this.courseList.findIndex(item => item.id === key.itemId);
-            this.courseList.splice(index, 1);
+            this.courseList = this.courseList.filter(item => item.id !== key.itemId);
+            this.changeDetection.markForCheck();
         });
     }
 
@@ -47,5 +52,9 @@ export class CoursesComponent implements OnInit, OnDestroy {
     searchCourse(data: string): void {
         this.searchText = data;
     }
+
+  addCourse(): void {
+    this.courseService.createItem();
+  }
 }
 

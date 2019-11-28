@@ -1,0 +1,51 @@
+<div class="add-course__wrapper">
+    <div class="add-course__container">
+        <div class="add-course__header">
+            <h2>New course</h2>
+        </div>
+        <div class="add-course__content">
+            <form action="">
+                <label class="add-course__form_label">
+                <span class="add-course__form_title">
+                    <span class="add-course__form_name">Title:</span>
+                    <span class="add-course__form_warn">*required</span>
+                </span>
+                    <input type="text" placeholder="Course title" class="add-course__input"/>
+                </label>
+                <label class="add-course__form_label">
+                <span class="add-course__form_title">
+                    <span class="add-course__form_name">Description:</span>
+                    <span class="add-course__form_warn">*required</span>
+                </span>
+                    <textarea class="add-course__textarea"></textarea>
+                </label>
+                <label class="add-course__form_label add-course__duration">
+                <span class="add-course__form_title">
+                    <span class="add-course__form_name">Duration:</span>
+                    <span class="add-course__form_warn">*required</span>
+                </span>
+                    <app-duration></app-duration>
+                </label>
+                <label class="add-course__form_label add-course__date">
+                <span class="add-course__form_title">
+                    <span class="add-course__form_name">Date:</span>
+                    <span class="add-course__form_warn">*required</span>
+                </span>
+                    <app-date></app-date>
+                </label>
+                <label class="add-course__form_label add-course__suggester">
+                <span class="add-course__form_title">
+                    <span class="add-course__form_name">Author:</span>
+                    <span class="add-course__form_warn">*required</span>
+                </span>
+                    <app-suggester class="add-course__flex"></app-suggester>
+                </label>
+                <div class="add-course__actions">
+                    <button class="add-course__button_cancel">Cancel</button>
+                    <button class="add-course__button_save">Save</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

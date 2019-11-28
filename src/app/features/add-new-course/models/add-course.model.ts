@@ -2,7 +2,7 @@ export interface IAddCourse {
     id: number;
     title: string;
     date: string;
-    duration?: number;
+    duration: number;
     description: string;
-    rate?: number;
+    suggester?: object;
 }

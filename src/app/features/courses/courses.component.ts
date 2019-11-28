@@ -36,8 +36,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
     setCoursesList(): void {
         this.getItemId = this.courseService.getId().subscribe( key => {
-            const index = this.courseList.findIndex(item => item.id === key.itemId);
-            this.courseList.splice(index, 1);
+            this.courseList = this.courseList.filter(item => item.id !== key.itemId);
             this.changeDetection.markForCheck();
         });
     }

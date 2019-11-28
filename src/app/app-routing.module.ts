@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoursesComponent } from '@features/courses/courses.component';
 import { LoginComponent } from '@features/auth/login/login.component';
-import { AddNewCourseComponent } from '@features/courses/add-new-course/add-new-course.component';
+import { AddNewCourseComponent } from '@features/add-new-course/components/add-new-course.component';
 
 
 const routes: Routes = [

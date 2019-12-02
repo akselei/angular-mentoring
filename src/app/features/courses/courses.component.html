@@ -1,12 +1,8 @@
-<div class="breadcrumbs">
-  <app-breadcrumbs></app-breadcrumbs>
-</div>
-
 <app-search (searchCourses)="searchCourse($event)"></app-search>
 
 <div class="courses__content">
   <div class="courses__button">
-    <a class="courses__add-course" routerLink="/add-course">
+    <a class="courses__add-course" [routerLink]="['add-course']">
       <i class="icon">
         <span class="one"></span>
         <span class="two"></span>

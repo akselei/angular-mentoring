@@ -1,5 +1,11 @@
 <div class="breadcrumbs">
   <div class="breadcrumbs__content">
-    <div class="breadcrumbs__page">Courses</div>
+    <div class="breadcrumbs__page">
+      <span *ngFor="let item of shownData; let last = last;">
+        <a [routerLink]="[item.path]" *ngIf="!last">{{item.data.breadcrumb}}</a>
+        <span *ngIf="!last">/</span>
+        <span *ngIf="last">{{item.data.breadcrumb}}</span>
+      </span>
+    </div>
   </div>
 </div>

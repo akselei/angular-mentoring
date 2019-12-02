@@ -4,34 +4,34 @@
             <h2>New course</h2>
         </div>
         <div class="add-course__content">
-            <form action="">
+            <form action="" [formGroup]="courseForm" (ngSubmit)="courseFormSubmit()">
                 <label class="add-course__form_label">
                 <span class="add-course__form_title">
                     <span class="add-course__form_name">Title:</span>
                     <span class="add-course__form_warn">*required</span>
                 </span>
-                    <input type="text" placeholder="Course title" class="add-course__input"/>
+                    <input type="text" placeholder="Course title" class="add-course__input" formControlName="course_title"/>
                 </label>
                 <label class="add-course__form_label">
                 <span class="add-course__form_title">
                     <span class="add-course__form_name">Description:</span>
                     <span class="add-course__form_warn">*required</span>
                 </span>
-                    <textarea class="add-course__textarea"></textarea>
+                    <textarea class="add-course__textarea" formControlName="course_description"></textarea>
                 </label>
                 <label class="add-course__form_label add-course__duration">
                 <span class="add-course__form_title">
                     <span class="add-course__form_name">Duration:</span>
                     <span class="add-course__form_warn">*required</span>
                 </span>
-                    <app-duration></app-duration>
+                    <app-duration [duration]="duration"></app-duration>
                 </label>
                 <label class="add-course__form_label add-course__date">
                 <span class="add-course__form_title">
                     <span class="add-course__form_name">Date:</span>
                     <span class="add-course__form_warn">*required</span>
                 </span>
-                    <app-date></app-date>
+                    <app-date [date]="date"></app-date>
                 </label>
                 <label class="add-course__form_label add-course__suggester">
                 <span class="add-course__form_title">
@@ -41,8 +41,8 @@
                     <app-suggester class="add-course__flex"></app-suggester>
                 </label>
                 <div class="add-course__actions">
-                    <button class="add-course__button_cancel">Cancel</button>
-                    <button class="add-course__button_save">Save</button>
+                    <button class="add-course__button_cancel" (click)="courseFormCancel()">Cancel</button>
+                    <button class="add-course__button_save" (click)="courseFormSubmit()">Save</button>
                 </div>
 
             </form>

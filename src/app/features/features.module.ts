@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DirectivesModule } from '@core/directives/directives.module';
 import { PipesModule } from '@core/pipes/pipes.module';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';

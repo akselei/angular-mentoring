@@ -1,1 +1,2 @@
-<input type="text" placeholder="Duration" class="duration__input"/> <span>{{589 | timeFormat}}</span>
+<input type="text" placeholder="Duration" class="duration__input" value="{{duration}}"/>
+<span class="duration__time">{{duration || duration | timeFormat}}</span>

@@ -8,8 +8,10 @@ import { MatDialogModule } from '@angular/material';
 import { CourseService } from '@features/services/course/course.service';
 import { RouterModule } from '@angular/router';
 import { AddNewCourseModule } from '@features/add-new-course/add-new-course.module';
+import { AuthModule } from '@features/auth/auth.module';
 
 import * as fromComponents from '.';
+
 
 @NgModule({
     declarations: [...fromComponents.components],
@@ -23,7 +25,8 @@ import * as fromComponents from '.';
         PipesModule,
         MatDialogModule,
         RouterModule,
-        AddNewCourseModule
+        AddNewCourseModule,
+        AuthModule
     ],
     entryComponents: [
         DeleteDialogComponent

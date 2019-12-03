@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoursesComponent } from '@features/courses/courses.component';
 import { LoginComponent } from '@features/auth/login/login.component';
-import { AddNewCourseComponent } from '@features/add-new-course/components/add-new-course.component';
 import { AuthGuardService } from '@core/services/auth-guard/auth-guard.service';
 
 const routes: Routes = [
@@ -12,16 +11,18 @@ const routes: Routes = [
       { path: '',
           component: CoursesComponent },
       { path: 'add-course',
-          component: AddNewCourseComponent,
+          loadChildren: () => import('@features/add-new-course/add-new-course.module').then(m => m.AddNewCourseModule),
           data: { breadcrumb: 'New Course' },
           canActivate: [AuthGuardService] },
       { path: ':id',
-          component: AddNewCourseComponent,
+          loadChildren: () => import('@features/add-new-course/add-new-course.module').then(m => m.AddNewCourseModule),
           data: { breadcrumb: 'Edit Course' },
           canActivate: [AuthGuardService] }
     ]
   },
-  { path: 'login', component: LoginComponent }
+  { path: 'login',
+      loadChildren: () => import('@features/auth/auth.module').then(m => m.AuthModule)
+  }
 ];
 
 @NgModule({

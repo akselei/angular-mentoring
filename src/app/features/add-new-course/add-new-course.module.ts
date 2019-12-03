@@ -6,6 +6,11 @@ import { DurationComponent } from '@features/add-new-course/components/duration/
 import { SuggesterComponent } from '@features/add-new-course/components/suggester/suggester.component';
 import { PipesModule } from '@core/pipes/pipes.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+    { path: '', component: AddNewCourseComponent }
+];
 
 @NgModule({
     declarations: [
@@ -15,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         SuggesterComponent
     ],
     imports: [
+        RouterModule.forChild(routes),
         CommonModule,
         PipesModule,
         FormsModule,
@@ -24,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         AddNewCourseComponent,
         DateComponent,
         DurationComponent,
-        SuggesterComponent
+        SuggesterComponent,
+        RouterModule
     ]
 })
 export class AddNewCourseModule { }

@@ -32,9 +32,11 @@ export class BreadcrumbsComponent implements OnInit {
             buffer(navigationEnd),
             map((data: any[]) => data.reverse())
         ).subscribe(res => {
-          this.shownData = res.reduce((a, b) => {
-            return [a, b].filter(item => item.data);
-          });
+            const loadedData = res.reduce((a, b) => {
+                return [a, b];
+            });
+
+            this.shownData = loadedData[0];
         });
   }
 }

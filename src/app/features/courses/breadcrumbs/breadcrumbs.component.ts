@@ -36,7 +36,7 @@ export class BreadcrumbsComponent implements OnInit {
                 return [a, b];
             });
 
-            this.shownData = loadedData[0];
+            this.shownData = loadedData[0].length ? loadedData[0] : loadedData.filter(item => item.data);
         });
   }
 }

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoursesComponent } from '@features/courses/courses.component';
-import { LoginComponent } from '@features/auth/login/login.component';
-import { AuthGuardService } from '@core/services/auth-guard/auth-guard.service';
+import { AuthGuardService } from '@core/guards/auth-guard/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'courses', pathMatch: 'full' },

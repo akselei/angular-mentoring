@@ -34,6 +34,12 @@ export class AuthService {
         return this.currentUserSubject.value;
     }
 
+    isAuth(): boolean {
+        const user = localStorage.getItem('currentUser');
+
+        return Boolean(user);
+    }
+
     logout() {
         localStorage.removeItem('currentUser');
 

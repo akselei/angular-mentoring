@@ -12,7 +12,27 @@
   }
 
   &__page {
-    color: $dark;
-    font-weight: 600;
+      &_tile,
+      &_link {
+          color: $strong-grey;
+          text-decoration: none;
+
+          &:hover {
+              text-decoration: underline;
+          }
+
+          &:last-child {
+              color: $black;
+              font-weight: 600;
+              &:hover {
+                  text-decoration: none;
+              }
+          }
+      }
+      &_separator {
+          color: $dark-sky-blue;
+          padding: 0 5px;
+          text-decoration: none;
+      }
   }
 }

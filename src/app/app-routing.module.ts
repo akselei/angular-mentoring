@@ -1,15 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoursesComponent } from '@features/courses/courses.component';
-import { LoginComponent } from '@features/auth/login/login.component';
-import { AddNewCourseComponent } from '@features/add-new-course/components/add-new-course.component';
-
+import { AuthGuardService } from '@core/guards/auth-guard/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'courses', pathMatch: 'full' },
-  { path: 'courses', component: CoursesComponent, data: { breadcrumb: 'Courses' } },
-  { path: 'add-course', component: AddNewCourseComponent, data: { breadcrumb: 'New Course' } },
-  { path: 'login', component: LoginComponent }
+  { path: 'courses', data: { breadcrumb: 'Courses' },
+    children: [
+      { path: '',
+          component: CoursesComponent },
+      { path: 'add-course',
+          loadChildren: () => import('@features/add-new-course/add-new-course.module').then(m => m.AddNewCourseModule),
+          data: { breadcrumb: 'New Course' },
+          canActivate: [AuthGuardService] },
+      { path: ':id',
+          loadChildren: () => import('@features/add-new-course/add-new-course.module').then(m => m.AddNewCourseModule),
+          data: { breadcrumb: 'Edit Course' },
+          canActivate: [AuthGuardService] }
+    ]
+  },
+  { path: 'login',
+      loadChildren: () => import('@features/auth/auth.module').then(m => m.AuthModule)
+  }
 ];
 
 @NgModule({

@@ -27,6 +27,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
             this.courseList = data;
             this.changeDetection.markForCheck();
         });
+
         this.setCoursesList();
     }
 

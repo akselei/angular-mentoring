@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="course__item_buttons">
-        <button class="button__edit">
+        <button class="button__edit" [routerLink]="[courseListItem.id, {data: courseListItem?.title}]" >
             <i class="icon"></i>
             Edit
         </button>

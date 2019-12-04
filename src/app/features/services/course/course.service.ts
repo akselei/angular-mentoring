@@ -4,6 +4,7 @@ import { ICourse } from '@features/courses/models/courses.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DeleteDialogComponent } from '@features/dialogs/delete-dialog/delete-dialog.component';
 import { Observable, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 
@@ -15,7 +16,8 @@ export class CourseService {
 
     constructor(
         private http: HttpClient,
-        public deleteDialog: MatDialog
+        public deleteDialog: MatDialog,
+        private router: Router
     ) { }
 
     getData(): Observable<ICourse[]> {
@@ -47,6 +49,7 @@ export class CourseService {
 
     createItem() {
         console.log('create item test');
+        this.router.navigateByUrl('/');
     }
 
     getItem(id) {

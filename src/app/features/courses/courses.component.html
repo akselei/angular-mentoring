@@ -1,4 +1,4 @@
-<app-search (searchCourses)="searchCourse($event)"></app-search>
+<app-search></app-search>
 
 <div class="courses__content">
   <div class="courses__button">
@@ -12,12 +12,12 @@
   </div>
   <div class="courses__list" *ngIf="dataIsAvailable">
     <app-course-item
-            *ngFor="let courseListItem of courseList | orderBy: 'date' | searchBy: searchText"
+            *ngFor="let courseListItem of courseList | orderBy: 'date'"
             [courseListItem]="courseListItem"
             (deleteCourse)="openDeleteDialog($event)"
     ></app-course-item>
 
-    <a title="Load More Button" class="courses__content_load-more-link" routerLink=""
+    <a title="Load More Button" class="courses__content_load-more-link" [routerLink]="['/']" [queryParams]="{page: page}"
        (click)="loadMoreHandler()">
       Load More
     </a>

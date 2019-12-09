@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '@core/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
       private authService: AuthService
   ) {
         this.loginForm = this.fb.group({
-          email: [''],
+          login: [''],
           password: ['']
         });
 
@@ -32,14 +33,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-      this.authService.login(this.loginForm.value)
+      this.authService.login(this.loginForm.value.login, this.loginForm.value.password)
+          .pipe(first())
           .subscribe(
               data => {
-                this.router.navigate(['/']);
+                  this.router.navigate(['/']);
               },
               error => {
-                this.error = error;
-              }
-          );
+                  this.authService.error(error);
+              });
   }
 }

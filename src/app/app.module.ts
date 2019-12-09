@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
-import { fakeBackendProvider } from '../assets/fake-backend';
+// import { fakeBackendProvider } from '../assets/fake-backend';
 import { JwtInterceptor } from '@core/helpers/jwt.interceptor';
 import { ErrorInterceptor } from '@core/helpers/error.interceptor';
 
@@ -33,7 +33,7 @@ import { ErrorInterceptor } from '@core/helpers/error.interceptor';
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-        fakeBackendProvider
+        // fakeBackendProvider
     ],
     bootstrap: [AppComponent],
 })

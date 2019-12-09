@@ -1,9 +1,8 @@
 <div class="course__item"
      [appCourseValidation] = "courseListItem.date">
-
     <div class="course__item_content">
         <div class="course__item_header">
-            <h2 class="course__item_title">{{courseListItem?.title | uppercase}}</h2>
+            <h2 class="course__item_title">{{courseListItem?.name | uppercase}}</h2>
             <div class="course__item_info">
                 <div class="course__item_rating" *ngIf = "courseListItem.rate">
                     <div [ngClass] = "{
@@ -16,11 +15,11 @@
                 </div>
                 <div class="course__item_duration">
                     <i class="icon"></i>
-                    {{courseListItem?.duration | timeFormat}}
+                    {{courseListItem?.length | timeFormat}}
                 </div>
                 <div class="course__item_data">
                     <i class="icon"></i>
-                    {{courseListItem?.date}}
+                    {{courseListItem?.date| date: 'd MMM, y'}}
                 </div>
             </div>
         </div>
@@ -29,7 +28,7 @@
         </div>
     </div>
     <div class="course__item_buttons">
-        <button class="button__edit" [routerLink]="[courseListItem.id, {data: courseListItem?.title}]" >
+        <button class="button__edit" [routerLink]="[courseListItem.id, {title: courseListItem?.name}]" >
             <i class="icon"></i>
             Edit
         </button>

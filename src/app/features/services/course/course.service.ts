@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ICourse } from '@features/courses/models/courses.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DeleteDialogComponent } from '@features/dialogs/delete-dialog/delete-dialog.component';
@@ -9,8 +9,11 @@ import { Router } from '@angular/router';
 @Injectable()
 
 export class CourseService {
-    courseData = 'assets/fakeCourseData.json';
+    courseData = 'http://localhost:3004/courses';
     courseEvents = new Subject();
+    httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
 
     deleteDialogRef: MatDialogRef<DeleteDialogComponent>;
 
@@ -20,15 +23,15 @@ export class CourseService {
         private router: Router
     ) { }
 
-    getData(): Observable<ICourse[]> {
-        return this.http.get<ICourse[]>(this.courseData);
+    getData(page): Observable<ICourse[]> {
+        return this.http.get<ICourse[]>(this.courseData + `?start=${page}&count=3`);
     }
 
     deleteDialogItem(opts) {
         this.deleteDialogRef = this.deleteDialog.open(DeleteDialogComponent, {
             width: '400px',
             data: {
-                title: opts.title,
+                name: opts.name,
                 id: opts.id
             }
         });
@@ -50,6 +53,13 @@ export class CourseService {
     createItem() {
         console.log('create item test');
         this.router.navigateByUrl('/');
+    }
+
+    deleteItem(courseId: ICourse | number) {
+        const id = typeof courseId === 'number' ? courseId : courseId.id;
+        const url = `${this.courseData}/${id}`;
+
+        return this.http.delete<ICourse>(url, this.httpOptions).subscribe();
     }
 
     getItem(id) {

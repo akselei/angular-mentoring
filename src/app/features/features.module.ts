@@ -6,17 +6,17 @@ import { PipesModule } from '@core/pipes/pipes.module';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { MatDialogModule } from '@angular/material';
 import { CourseService } from '@features/services/course/course.service';
+import { SearchService } from '@features/services/search/search.service';
 import { RouterModule } from '@angular/router';
 import { AddNewCourseModule } from '@features/add-new-course/add-new-course.module';
 import { AuthModule } from '@features/auth/auth.module';
 
 import * as fromComponents from '.';
 
-
 @NgModule({
     declarations: [...fromComponents.components],
     exports: [...fromComponents.components],
-    providers: [ CourseService ],
+    providers: [ CourseService, SearchService ],
     imports: [
         CommonModule,
         FormsModule,

@@ -34,14 +34,14 @@ export class AddNewCourseComponent implements OnInit {
     const id: any = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (id) {
-      this.courseService.getData().subscribe((data) => {
+      this.courseService.getData(null).subscribe((data) => {
         this.courseList = data.filter(item => item.id === Number(id));
 
-        this.duration = this.courseList[0].duration;
+        this.duration = this.courseList[0].length;
         this.date = this.courseList[0].date;
 
         this.courseForm = this.fb.group({
-          course_title: [this.courseList[0].title, [Validators.required]],
+          course_title: [this.courseList[0].name, [Validators.required]],
           course_description: [this.courseList[0].description, [Validators.required]]
         });
       });

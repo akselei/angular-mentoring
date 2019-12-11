@@ -1,7 +1,8 @@
-import {Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CourseService } from '@features/services/course/course.service';
 import { ICourse } from './models/courses.model';
 import { Subscription } from 'rxjs';
+import { SearchService } from '@features/services/search/search.service';
 
 @Component({
     selector: 'app-courses',
@@ -13,30 +14,41 @@ import { Subscription } from 'rxjs';
 export class CoursesComponent implements OnInit, OnDestroy {
     courseList: ICourse[];
     getItemId: Subscription;
-    searchText: string;
+    getSearch: Subscription;
+    searchResults = false;
+    page = 1;
 
     dataIsAvailable = true;
 
     constructor(
         private courseService: CourseService,
-        private changeDetection: ChangeDetectorRef
+        private changeDetection: ChangeDetectorRef,
+        private searchService: SearchService
     ) { }
 
     ngOnInit() {
-        this.courseService.getData().subscribe((data) => {
-            this.courseList = data;
-            this.changeDetection.markForCheck();
-        });
-
+        this.setDefaultCoursesList();
         this.setCoursesList();
+        this.setSearchList();
     }
 
     ngOnDestroy() {
         this.getItemId.unsubscribe();
+        this.getSearch.unsubscribe();
+    }
+
+    setDefaultCoursesList(): void {
+        if (this.page === 1) {
+            this.courseService.getData(0).subscribe((data) => {
+                this.courseList = data;
+                this.changeDetection.markForCheck();
+            });
+        }
     }
 
     setCoursesList(): void {
         this.getItemId = this.courseService.getId().subscribe( key => {
+            this.courseService.deleteItem(key.itemId);
             this.courseList = this.courseList.filter(item => item.id !== key.itemId);
             this.changeDetection.markForCheck();
         });
@@ -47,11 +59,24 @@ export class CoursesComponent implements OnInit, OnDestroy {
     }
 
     loadMoreHandler(): void {
-        console.log('Load More Button Works!');
+        this.page++;
+
+        if (!this.searchResults) {
+            this.courseService.getData(this.page * 3).subscribe(key => {
+                this.courseList = this.courseList.concat(key);
+                this.changeDetection.markForCheck();
+            });
+        }
     }
 
-    searchCourse(data: string): void {
-        this.searchText = data;
+    setSearchList(): void {
+        this.getSearch = this.searchService.getSearchedData().subscribe(res => {
+            if (res.length) {
+                this.courseList = res;
+                this.searchResults = true;
+            }
+            this.changeDetection.markForCheck();
+        });
     }
 
   addCourse(): void {

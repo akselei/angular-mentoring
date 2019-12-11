@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SearchService } from '@features/services/search/search.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-search',
@@ -6,15 +8,17 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-    @Output() searchCourses = new EventEmitter<string>();
     searchText: string;
 
-    constructor() { }
+    constructor(
+        private searchService: SearchService,
+        private activatedRoute: ActivatedRoute
+    ) { }
 
     ngOnInit() {
     }
 
     searchSubmit(): void {
-        this.searchCourses.emit(this.searchText);
+        this.searchService.getData(this.searchText);
     }
 }

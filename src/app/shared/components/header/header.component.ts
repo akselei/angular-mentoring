@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '@core/services/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { IUser } from '@features/auth/models/user.model';
+import { IName } from '@features/auth/models/user.model';
+import { UserService } from '@core/services/auth/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +11,36 @@ import { IUser } from '@features/auth/models/user.model';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   title = 'Angular mentoring Program';
-  user: IUser;
+  user: IName;
+  userAvailable: boolean;
   userSubscription: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+      private authService: AuthService,
+      private userService: UserService
+      ) { }
 
   ngOnInit() {
-    this.userSubscription = this.authService.currentUser.subscribe(user => {
-      this.user = user;
+    this.userSubscription = this.authService.currentUser.subscribe(token => {
+      if (token) {
+        this.userData(token.token);
+      } else if (token === null) {
+        this.userAvailable = false;
+      }
+    });
+  }
+
+  userData(data): void {
+    this.userService.getAll().subscribe(res => {
+      for (const user of res) {
+        if (data === user.fakeToken) {
+          this.userAvailable = true;
+          this.user  = {
+            first: user.name.first,
+            last: user.name.last
+          };
+        }
+      }
     });
   }
 

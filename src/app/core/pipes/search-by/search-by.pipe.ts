@@ -10,7 +10,7 @@ export class SearchByPipe implements PipeTransform {
     if (!value) { return data; }
 
     return data.filter((course: ICourse) => {
-      return course.title.toLowerCase().trim().indexOf(value.toLowerCase().trim()) > -1;
+      return course.name.toLowerCase().trim().indexOf(value.toLowerCase().trim()) > -1;
     });
   }
 }

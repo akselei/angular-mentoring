@@ -9,7 +9,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class SearchComponent implements OnInit {
     searchText: string;
-    searchPage: number;
 
     constructor(
         private searchService: SearchService,
@@ -17,12 +16,9 @@ export class SearchComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.activatedRoute.queryParams.subscribe(res => {
-            this.searchPage = +res.page;
-        });
     }
 
     searchSubmit(): void {
-        this.searchService.getData(this.searchText, this.searchPage);
+        this.searchService.getData(this.searchText);
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ICourse } from '@features/courses/models/courses.model';
 
@@ -12,17 +12,15 @@ export class SearchService {
       private http: HttpClient
   ) { }
 
-  getData(text, page) {
-    this.http.get<ICourse[]>(this.courseData + `?textFragment=${text.toLowerCase().trim()}`)
+  getData(text) {
+    this.http.get<ICourse[]>(this.courseData)
         .subscribe(res => {
           this.sendSearchedData(res);
         });
   }
 
 
-  sendSearchedData(data: any): void {
-    data = data || [];
-
+  sendSearchedData(data: Array<ICourse> = []): void {
     if (data) {
       this.searchEvents.next(data);
     }

@@ -62,7 +62,6 @@ export class CoursesComponent implements OnInit, OnDestroy {
         this.page++;
 
         if (!this.searchResults) {
-            console.log('ddddddd');
             this.courseService.getData(this.page * 3).subscribe(key => {
                 this.courseList = this.courseList.concat(key);
                 this.changeDetection.markForCheck();
@@ -72,7 +71,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
     setSearchList(): void {
         this.getSearch = this.searchService.getSearchedData().subscribe(res => {
-            if (res.length > 0) {
+            if (res.length) {
                 this.courseList = res;
                 this.searchResults = true;
             }

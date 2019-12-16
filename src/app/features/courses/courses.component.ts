@@ -70,7 +70,9 @@ export class CoursesComponent implements OnInit, OnDestroy {
     }
 
     setSearchList(): void {
-        this.getSearch = this.searchService.getSearchedData().subscribe(res => {
+        this.getSearch = this.searchService.getSearchedData()
+            .pipe()
+            .subscribe(res => {
             if (res.length) {
                 this.courseList = res;
                 this.searchResults = true;

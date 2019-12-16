@@ -2,8 +2,7 @@
   <form action="" class="search__form">
     <label>
       <i class="icon"></i>
-      <input type="text" placeholder="Text to search" class="search__input" name="searchText" [(ngModel)]="searchText">
+      <input type="text" placeholder="Text to search" class="search__input" #searchInput>
     </label>
-    <button class="button__submit" (click)="searchSubmit()">Search</button>
   </form>
 </div>

@@ -3,6 +3,7 @@ import { CourseItemComponent } from '@features/courses/course-item/course-item.c
 import { CoursesComponent } from '@features/courses/courses.component';
 import { BreadcrumbsComponent } from '@features/courses/breadcrumbs/breadcrumbs.component';
 import { DeleteDialogComponent } from '@features/dialogs/delete-dialog/delete-dialog.component';
+import { LoaderComponent } from '@features/loader/loader.component';
 
 
 export const components: any[] = [
@@ -10,7 +11,8 @@ export const components: any[] = [
     CourseItemComponent,
     CoursesComponent,
     BreadcrumbsComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    LoaderComponent
 ];
 
 export * from '@features/courses/search/search.component';
@@ -18,3 +20,4 @@ export * from '@features/courses/course-item/course-item.component';
 export * from '@features/courses/courses.component';
 export * from '@features/courses/breadcrumbs/breadcrumbs.component';
 export * from '@features/dialogs/delete-dialog/delete-dialog.component';
+export * from '@features/loader/loader.component';

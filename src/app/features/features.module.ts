@@ -10,6 +10,7 @@ import { SearchService } from '@features/services/search/search.service';
 import { RouterModule } from '@angular/router';
 import { AddNewCourseModule } from '@features/add-new-course/add-new-course.module';
 import { AuthModule } from '@features/auth/auth.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import * as fromComponents from '.';
 
@@ -26,7 +27,8 @@ import * as fromComponents from '.';
         MatDialogModule,
         RouterModule,
         AddNewCourseModule,
-        AuthModule
+        AuthModule,
+        MatProgressSpinnerModule
     ],
     entryComponents: [
         DeleteDialogComponent

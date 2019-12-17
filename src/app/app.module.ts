@@ -10,9 +10,10 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
-// import { fakeBackendProvider } from '../assets/fake-backend';
 import { JwtInterceptor } from '@core/helpers/jwt.interceptor';
 import { ErrorInterceptor } from '@core/helpers/error.interceptor';
+import { LoaderInterceptor } from '@core/helpers/loader.interseptor';
+import { LoaderService } from '@core/services/loader/loader.service';
 
 @NgModule({
     declarations: [
@@ -32,8 +33,9 @@ import { ErrorInterceptor } from '@core/helpers/error.interceptor';
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
 
-        // fakeBackendProvider
+        LoaderService
     ],
     bootstrap: [AppComponent],
 })

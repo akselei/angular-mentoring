@@ -77,6 +77,8 @@ export class CoursesComponent implements OnInit, OnDestroy {
                 this.courseList = res;
                 this.searchResults = true;
             }
+
+            this.dataIsAvailable = res.length;
             this.changeDetection.markForCheck();
         });
     }

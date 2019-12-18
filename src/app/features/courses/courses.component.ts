@@ -73,7 +73,6 @@ export class CoursesComponent implements OnInit, OnDestroy {
         this.getSearch = this.searchService.getSearchedData()
             .pipe()
             .subscribe(res => {
-                console.log(res);
             if (res.length) {
                 this.courseList = res;
                 this.searchResults = true;

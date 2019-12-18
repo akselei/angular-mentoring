@@ -11,8 +11,6 @@ import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators'
 export class SearchComponent implements OnInit, AfterViewInit {
     @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
 
-    mappedValue: any;
-
     constructor(
         private searchService: SearchService,
         public el: ElementRef
@@ -22,8 +20,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
         fromEvent(this.searchInput.nativeElement, 'keyup')
             .pipe(
                 map(e => {
-                    this.mappedValue = e;
-                    return this.mappedValue.target.value;
+                    return e.target.value;
                 }),
                 filter(res => res.length >= 2),
                 debounceTime(500),

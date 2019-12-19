@@ -6,6 +6,7 @@
         <i class="icon"></i>
         <a class="login__link" routerLink="/login" *ngIf="!userAvailable">Log In</a>
         <div class="login__user" *ngIf="userAvailable">
+            Hello,
             {{user.first}}
             {{user.last}}
         </div>

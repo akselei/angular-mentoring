@@ -13,7 +13,7 @@ export class SearchService {
   ) { }
 
   getData(text) {
-    this.http.get<ICourse[]>(this.courseData)
+    this.http.get<ICourse[]>(`${this.courseData}?textFragment=${text}`)
         .subscribe(res => {
           this.sendSearchedData(res);
         });

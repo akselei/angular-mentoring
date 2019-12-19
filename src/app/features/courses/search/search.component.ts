@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { SearchService } from '@features/services/search/search.service';
-import {ActivatedRoute} from '@angular/router';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
-    searchText: string;
+export class SearchComponent implements OnInit, AfterViewInit {
+    @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
 
     constructor(
         private searchService: SearchService,
-        private activatedRoute: ActivatedRoute
+        public el: ElementRef
     ) { }
 
-    ngOnInit() {
+    ngAfterViewInit(): void {
+        fromEvent(this.searchInput.nativeElement, 'keyup')
+            .pipe(
+                map((event: KeyboardEvent) => (event.currentTarget as HTMLInputElement).value),
+                filter(res => res.length >= 2),
+                debounceTime(500),
+                distinctUntilChanged()
+            ).subscribe(res => this.searchService.getData(res));
     }
 
-    searchSubmit(): void {
-        this.searchService.getData(this.searchText);
+    ngOnInit() {
     }
 }

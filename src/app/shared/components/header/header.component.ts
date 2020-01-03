@@ -3,6 +3,9 @@ import { AuthService } from '@core/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { IName } from '@features/auth/models/user.model';
 import { UserService } from '@core/services/auth/user.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '@core/store/app.states';
+import { LogOut } from '@core/store/auth/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +20,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
       private authService: AuthService,
-      private userService: UserService
+      private userService: UserService,
+      private store: Store<AppState>
       ) { }
 
   ngOnInit() {
@@ -49,7 +53,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.store.dispatch(new LogOut());
   }
-
 }

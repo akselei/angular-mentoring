@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '@core/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { AppState } from '@core/store/app.states';
+import { LogIn } from '@core/store/auth/actions/auth.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
       private fb: FormBuilder,
       private router: Router,
-      private authService: AuthService
+      private authService: AuthService,
+      private store: Store<AppState>
   ) {
         this.loginForm = this.fb.group({
           login: [''],
@@ -33,14 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-      this.authService.login(this.loginForm.value.login, this.loginForm.value.password)
-          .pipe(first())
-          .subscribe(
-              data => {
-                  this.router.navigate(['/']);
-              },
-              error => {
-                  this.authService.error(error);
-              });
+      this.store.dispatch(new LogIn(this.loginForm.value));
   }
 }

@@ -55,14 +55,15 @@ export class CourseService {
         this.router.navigateByUrl('/');
     }
 
+    getDataById(id) {
+        const url = `${this.courseData}/${id}`;
+        return this.http.get<ICourse>(url, this.httpOptions);
+    }
+
     deleteItem(courseId: ICourse | number) {
         const id = typeof courseId === 'number' ? courseId : courseId.id;
         const url = `${this.courseData}/${id}`;
 
         return this.http.delete<ICourse>(url, this.httpOptions).subscribe();
-    }
-
-    getItem(id) {
-        console.log('get item by ID ' + id);
     }
 }

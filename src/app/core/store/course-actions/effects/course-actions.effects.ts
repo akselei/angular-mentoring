@@ -52,7 +52,7 @@ export class CourseActionsEffects {
         }));
 
     @Effect({ dispatch: false })
-    LogInSuccess: Observable<any> = this.actions.pipe(
+    SaveDataSuccess: Observable<any> = this.actions.pipe(
         ofType(CourseActionsActionTypes.SAVE_DATA_SUCCESS),
         tap(() => {
             this.router.navigateByUrl('/');

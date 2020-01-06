@@ -28,7 +28,7 @@ import { LoaderService } from '@core/services/loader/loader.service';
         RouterModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        MatDialogModule
+        MatDialogModule,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

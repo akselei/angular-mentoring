@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '@features/services/course/course.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState, selectCourseActionsState } from '@core/store/app.states';
+import {GetData, SaveData} from '@core/store/course-actions/actions/course-actions.actions';
 
 @Component({
   selector: 'app-add-new-course',
   templateUrl: './add-new-course.component.html',
-  styleUrls: ['./add-new-course.component.scss']
+  styleUrls: ['./add-new-course.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddNewCourseComponent implements OnInit {
   courseList;
   courseForm: FormGroup;
+  id: string = this.activatedRoute.snapshot.paramMap.get('id');
   duration: number;
   date: string;
 
@@ -18,11 +23,13 @@ export class AddNewCourseComponent implements OnInit {
       private activatedRoute: ActivatedRoute,
       public fb: FormBuilder,
       private router: Router,
-      private courseService: CourseService
+      private courseService: CourseService,
+      private store: Store<AppState>,
+      private changeDetection: ChangeDetectorRef
   ) {
     this.courseForm = this.fb.group({
-      course_title: [''],
-      course_description: ['']
+      name: [''],
+      description: ['']
     });
   }
 
@@ -31,25 +38,28 @@ export class AddNewCourseComponent implements OnInit {
   }
 
   getExistingData(): void {
-    const id: any = this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.store.dispatch(new GetData(this.id));
+      this.store.select(selectCourseActionsState).subscribe(data => {
+        if (data.course) {
+          this.courseList = data.course;
 
-    if (id) {
-      this.courseService.getData(null).subscribe((data) => {
-        this.courseList = data.filter(item => item.id === Number(id));
+          this.duration = this.courseList.length;
+          this.date = this.courseList.date;
 
-        this.duration = this.courseList[0].length;
-        this.date = this.courseList[0].date;
+          this.courseForm = this.fb.group({
+            name: [this.courseList.name, [Validators.required]],
+            description: [this.courseList.description, [Validators.required]]
+          });
 
-        this.courseForm = this.fb.group({
-          course_title: [this.courseList[0].name, [Validators.required]],
-          course_description: [this.courseList[0].description, [Validators.required]]
-        });
+        }
+        this.changeDetection.markForCheck();
       });
     }
   }
 
   courseFormSubmit(): void {
-    this.courseService.createItem();
+      this.store.dispatch(new SaveData({value: this.courseForm.value, id: this.id}));
   }
 
   courseFormCancel(): void {

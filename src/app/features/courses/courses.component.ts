@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CourseService } from '@features/services/course/course.service';
-import { ICourse } from './models/courses.model';
 import { Subscription } from 'rxjs';
 import { SearchService } from '@features/services/search/search.service';
+import {DeleteItem, ListRequest, LoadMoreRequest} from '@core/store/courses/actions/courses.actions';
+import { Store } from '@ngrx/store';
+import { AppState, selectCoursesState } from '@core/store/app.states';
 
 @Component({
     selector: 'app-courses',
@@ -12,21 +14,24 @@ import { SearchService } from '@features/services/search/search.service';
 })
 
 export class CoursesComponent implements OnInit, OnDestroy {
-    courseList: ICourse[];
+    courseList;
     getItemId: Subscription;
     getSearch: Subscription;
     searchResults = false;
     page = 1;
 
-    dataIsAvailable = true;
+    dataIsAvailable: boolean;
 
     constructor(
         private courseService: CourseService,
         private changeDetection: ChangeDetectorRef,
-        private searchService: SearchService
+        private searchService: SearchService,
+        private store: Store<AppState>
     ) { }
 
     ngOnInit() {
+        this.store.dispatch(new ListRequest(0));
+
         this.setDefaultCoursesList();
         this.setCoursesList();
         this.setSearchList();
@@ -39,8 +44,11 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
     setDefaultCoursesList(): void {
         if (this.page === 1) {
-            this.courseService.getData(0).subscribe((data) => {
-                this.courseList = data;
+            this.store.select(selectCoursesState).subscribe(data => {
+                if (data.courses) {
+                    this.dataIsAvailable = data.isDataAvailable;
+                    this.courseList = data.courses;
+                }
                 this.changeDetection.markForCheck();
             });
         }
@@ -48,8 +56,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
     setCoursesList(): void {
         this.getItemId = this.courseService.getId().subscribe( key => {
-            this.courseService.deleteItem(key.itemId);
-            this.courseList = this.courseList.filter(item => item.id !== key.itemId);
+            this.store.dispatch(new DeleteItem(key.itemId));
             this.changeDetection.markForCheck();
         });
     }
@@ -62,10 +69,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
         this.page++;
 
         if (!this.searchResults) {
-            this.courseService.getData(this.page * 3).subscribe(key => {
-                this.courseList = this.courseList.concat(key);
-                this.changeDetection.markForCheck();
-            });
+            this.store.dispatch(new LoadMoreRequest(this.page * 3));
         }
     }
 

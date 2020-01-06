@@ -45,8 +45,10 @@ export class CoursesComponent implements OnInit, OnDestroy {
     setDefaultCoursesList(): void {
         if (this.page === 1) {
             this.store.select(selectCoursesState).subscribe(data => {
-                this.dataIsAvailable = data.isDataAvailable;
-                this.courseList = data.courses;
+                if (data.courses) {
+                    this.dataIsAvailable = data.isDataAvailable;
+                    this.courseList = data.courses;
+                }
                 this.changeDetection.markForCheck();
             });
         }

@@ -60,6 +60,14 @@ export class CourseService {
         return this.http.get<ICourse>(url, this.httpOptions);
     }
 
+    saveData(data, id) {
+        const url = `${this.courseData}/${id}`;
+
+        return !!id ?
+            this.http.patch<ICourse>(url, data, this.httpOptions) :
+            this.http.post<ICourse>(this.courseData, data);
+    }
+
     deleteItem(courseId: ICourse | number) {
         const id = typeof courseId === 'number' ? courseId : courseId.id;
         const url = `${this.courseData}/${id}`;

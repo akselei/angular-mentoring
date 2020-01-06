@@ -4,7 +4,7 @@ import { CourseService } from '@features/services/course/course.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState, selectCourseActionsState } from '@core/store/app.states';
-import { GetData } from '@core/store/course-actions/actions/course-actions.actions';
+import {GetData, SaveData} from '@core/store/course-actions/actions/course-actions.actions';
 
 @Component({
   selector: 'app-add-new-course',
@@ -15,9 +15,9 @@ import { GetData } from '@core/store/course-actions/actions/course-actions.actio
 export class AddNewCourseComponent implements OnInit {
   courseList;
   courseForm: FormGroup;
+  id: string = this.activatedRoute.snapshot.paramMap.get('id');
   duration: number;
   date: string;
-
 
   constructor(
       private activatedRoute: ActivatedRoute,
@@ -28,8 +28,8 @@ export class AddNewCourseComponent implements OnInit {
       private changeDetection: ChangeDetectorRef
   ) {
     this.courseForm = this.fb.group({
-      course_title: [''],
-      course_description: ['']
+      name: [''],
+      description: ['']
     });
   }
 
@@ -38,10 +38,8 @@ export class AddNewCourseComponent implements OnInit {
   }
 
   getExistingData(): void {
-    const id: string = this.activatedRoute.snapshot.paramMap.get('id');
-
-    if (id) {
-      this.store.dispatch(new GetData(id));
+    if (this.id) {
+      this.store.dispatch(new GetData(this.id));
       this.store.select(selectCourseActionsState).subscribe(data => {
         if (data.course) {
           this.courseList = data.course;
@@ -50,8 +48,8 @@ export class AddNewCourseComponent implements OnInit {
           this.date = this.courseList.date;
 
           this.courseForm = this.fb.group({
-            course_title: [this.courseList.name, [Validators.required]],
-            course_description: [this.courseList.description, [Validators.required]]
+            name: [this.courseList.name, [Validators.required]],
+            description: [this.courseList.description, [Validators.required]]
           });
 
         }
@@ -61,7 +59,7 @@ export class AddNewCourseComponent implements OnInit {
   }
 
   courseFormSubmit(): void {
-    this.courseService.createItem();
+      this.store.dispatch(new SaveData({value: this.courseForm.value, id: this.id}));
   }
 
   courseFormCancel(): void {

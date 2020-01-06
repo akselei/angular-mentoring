@@ -51,7 +51,7 @@ export class AuthEffects {
     @Effect({ dispatch: false })
     LogOut: Observable<any> = this.actions.pipe(
         ofType(AuthActionTypes.LOGOUT),
-        tap((user) => {
+        tap(() => {
             this.authService.logout();
         })
     );

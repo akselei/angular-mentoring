@@ -28,6 +28,19 @@ export function CourseActionsReducer(state = initialState, action: All): CourseA
                 errorMessage: 'Invalid data'
             };
         }
+        case CourseActionsActionTypes.SAVE_DATA_SUCCESS: {
+            return {
+                ...state,
+                course: action.payload.course,
+                errorMessage: null
+            };
+        }
+        case CourseActionsActionTypes.SAVE_DATA_FAILURE: {
+            return {
+                ...state,
+                errorMessage: 'Invalid save data'
+            };
+        }
         default: {
             return state;
         }

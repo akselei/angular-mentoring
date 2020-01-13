@@ -4,7 +4,7 @@
 .add-course {
     &__date,
     &__duration {
-        width: 180px;
+        width: 150px;
         position: relative;
     }
     &__suggester {
@@ -49,6 +49,11 @@
     }
 
     &__form {
+        &.error {
+            .add-course__form_warn {
+                color: $red;
+            }
+        }
         &_label,
         &_title {
             display: flex;
@@ -56,6 +61,18 @@
         &_label {
             flex-direction: column;
             margin-top: 12px;
+            position: relative;
+
+            &.error-spec {
+                .error-message { display: block; }
+                .add-course__input,
+                .add-course__textarea,
+                .duration__input,
+                .date__input,
+                .suggester__input {
+                    border-color: $red;
+                }
+            }
         }
 
         &_title {
@@ -95,11 +112,14 @@
 
         &_save {
             @include button(middle, $sick-green, false, $white);
-        }
-
-        &[disabled] {
-            cursor: not-allowed;
-            color: $strong-grey;
+            &:disabled,
+            [disabled=disabled],
+            [disabled] {
+                cursor: not-allowed;
+                color: $white;
+                background-color: $strong-grey;
+                opacity: .7;
+            }
         }
     }
 
@@ -108,11 +128,14 @@
         align-items: center;
         justify-content: space-between;
     }
-
-    &__error {
-        font-size: 12px;
-        color: $red;
-        flex: 0 70%;
-        text-align: right;
-    }
+}
+.error-message {
+    font-size: 12px;
+    color: $red;
+    display: none;
+    padding: 2px 10px;
+    border: 1px solid $red;
+    margin: 5px 0;
+    text-align: left;
+    border-radius: 3px;
 }

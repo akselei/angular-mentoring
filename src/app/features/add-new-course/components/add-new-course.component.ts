@@ -1,10 +1,11 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '@features/services/course/course.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState, selectCourseActionsState } from '@core/store/app.states';
-import {GetData, SaveData} from '@core/store/course-actions/actions/course-actions.actions';
+import { GetData, SaveData } from '@core/store/course-actions/actions/course-actions.actions';
+import { DateValidatorDirective } from '@core/directives/date-validator/date-validator.directive';
 
 @Component({
   selector: 'app-add-new-course',
@@ -17,7 +18,7 @@ export class AddNewCourseComponent implements OnInit {
   courseForm: FormGroup;
   id: string = this.activatedRoute.snapshot.paramMap.get('id');
   duration: number;
-  date: string;
+  existingDate: string;
 
   constructor(
       private activatedRoute: ActivatedRoute,
@@ -28,8 +29,10 @@ export class AddNewCourseComponent implements OnInit {
       private changeDetection: ChangeDetectorRef
   ) {
     this.courseForm = this.fb.group({
-      name: [''],
-      description: ['']
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
+      length: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      date: ['', [Validators.required]]
     });
   }
 
@@ -45,11 +48,13 @@ export class AddNewCourseComponent implements OnInit {
           this.courseList = data.course;
 
           this.duration = this.courseList.length;
-          this.date = this.courseList.date;
+          this.existingDate = this.courseList.date;
 
           this.courseForm = this.fb.group({
-            name: [this.courseList.name, [Validators.required]],
-            description: [this.courseList.description, [Validators.required]]
+            name: [this.courseList.name],
+            description: [this.courseList.description],
+            length: [this.duration],
+            date: [this.existingDate]
           });
 
         }
@@ -59,7 +64,8 @@ export class AddNewCourseComponent implements OnInit {
   }
 
   courseFormSubmit(): void {
-      this.store.dispatch(new SaveData({value: this.courseForm.value, id: this.id}));
+    console.log(this.courseForm.value);
+    // this.store.dispatch(new SaveData({value: this.courseForm.value, id: this.id}));
   }
 
   courseFormCancel(): void {

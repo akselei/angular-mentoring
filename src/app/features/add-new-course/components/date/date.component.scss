@@ -4,5 +4,32 @@
 .date {
     &__input {
         @include input(34px);
+
+        position: relative;
+        padding: 0;
+        width: 150px;
+
+        input {
+            border: 0;
+            background: transparent;
+            height: 34px;
+            padding-left: 12px;
+            padding-right: 30px;
+            width: 150px;
+        }
+
+        .icon {
+            position: absolute;
+            display: block;
+            top: 7px;
+            right: 7px;
+            width: 17px;
+            height: 17px;
+            mask-image: url("#{$iconLink}/calendar-alt.svg");
+            mask-repeat: no-repeat;
+            mask-position: 0 0;
+            background-color: $strong-grey;
+            cursor: pointer;
+        }
     }
 }

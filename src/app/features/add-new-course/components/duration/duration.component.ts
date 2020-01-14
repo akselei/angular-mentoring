@@ -1,5 +1,5 @@
 import { Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-duration',
@@ -8,11 +8,6 @@ import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} fro
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DurationComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => DurationComponent),
       multi: true
     }
@@ -24,7 +19,6 @@ export class DurationComponent implements ControlValueAccessor {
   @ViewChild('durationInput', {static: false}) durationInput: ElementRef;
 
   durationTime: number;
-  valid = false;
 
   constructor() { }
   onChange: any = () => {};

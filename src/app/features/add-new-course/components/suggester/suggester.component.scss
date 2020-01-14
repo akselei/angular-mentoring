@@ -4,7 +4,12 @@
 .suggester {
     &__input {
         @include input(34px);
-
+        padding: 2px;
         flex: 0 100%;
+
+        &_hidden {
+            border: 0;
+        }
     }
 }
+

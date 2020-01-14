@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
@@ -7,35 +7,37 @@ import { MatDatepickerInputEvent } from '@angular/material';
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.scss'],
   providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DateComponent),
-      multi: true
-    }]
+        {
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => DateComponent),
+          multi: true
+        }
+    ]
 })
 export class DateComponent implements ControlValueAccessor {
   @Input() existingDate;
-  events: string[] = [];
+  @Input() error;
 
-  constructor() { }
+    date: string;
+    events: string[] = [];
 
-  addNewDate(event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${event.value}`);
-    this.writeValue(this.events);
-  }
+    constructor() { }
 
-  writeValue(value): void {
-    this.onChange(value[0]);
-  }
+    addNewDate(event: MatDatepickerInputEvent<any>) {
+        const formattedDate = JSON.stringify(event.value).replace(/[`~!@#$%^&*()_|+\=?;'",<>\{\}\[\]\\\/]/gi, '');
+        this.onChange(formattedDate);
+    }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+    writeValue(value): void {}
 
-  registerOnChange(fn) {
+    onChange: any = () => {};
+    onTouched: any = () => {};
+
+    registerOnChange(fn) {
     this.onChange = fn;
-  }
+    }
 
-  registerOnTouched(fn) {
+    registerOnTouched(fn) {
     this.onTouched = fn;
-  }
+    }
 }

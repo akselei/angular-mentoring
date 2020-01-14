@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { AuthService } from '@core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { AppState } from '@core/store/app.states';
@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
       private store: Store<AppState>
   ) {
         this.loginForm = this.fb.group({
-          login: [''],
-          password: ['']
+          login: ['', [Validators.required]],
+          password: ['', [Validators.required]]
         });
 
         if (this.authService.currentUserValue) {

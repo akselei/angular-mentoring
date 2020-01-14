@@ -5,7 +5,7 @@
         </div>
 
         <div class="add-course__content">
-            <form action="" class="add-course__form" [formGroup]="courseForm" (ngSubmit)="courseFormSubmit()" [ngClass]="{'error': courseForm.invalid && (courseForm.dirty || courseForm.touched)}">
+            <form action="" class="add-course__form" [formGroup]="courseForm" (ngSubmit)="courseFormSubmit()" [ngClass]="{'error': courseFormInvalid}">
                     <label class="add-course__form_label"
                            [ngClass]="{'error-spec': courseForm.get('name').errors?.maxlength}">
                         <span class="add-course__form_title">
@@ -32,22 +32,23 @@
                             <span class="add-course__form_warn">*required</span>
                         </span>
                         <span class="error-message">should be only numbers in minutes e.g. 120</span>
-                        <app-duration [duration]="duration" [error]="courseForm.get('length').errors" [formControl]="courseForm.get('length')"></app-duration>
+                        <app-duration [duration]="duration" [error]="courseForm.get('length').errors" formControlName="length"></app-duration>
                     </label>
-                    <label class="add-course__form_label add-course__date">
+                    <label class="add-course__form_label add-course__date"
+                           [ngClass]="{'error-spec': courseForm.get('date').errors && (courseForm.dirty || courseForm.touched)}">
                         <span class="add-course__form_title">
                             <span class="add-course__form_name">Date:</span>
                             <span class="add-course__form_warn">*required</span>
                         </span>
                         <span class="error-message">Should be set date by datepicker or in proper format e.g. 1/11/2020</span>
-                        <app-date [existingDate]="existingDate" [formControl]="courseForm.get('date')"></app-date>
+                        <app-date [existingDate]="existingDate" [error]="courseForm.get('date').errors" formControlName="date"></app-date>
                     </label>
-                    <label class="add-course__form_label add-course__suggester">
+                    <label class="add-course__form_label add-course__suggester" [ngClass]="{'error-spec': courseForm.get('authors').errors}">
                     <span class="add-course__form_title">
                         <span class="add-course__form_name">Author:</span>
                         <span class="add-course__form_warn">*required</span>
                     </span>
-                        <app-suggester class="add-course__flex"></app-suggester>
+                        <app-suggester [existingId]="id" class="add-course__flex" formControlName="authors"></app-suggester>
                     </label>
                     <div class="add-course__actions">
                         <button class="add-course__button_cancel" (click)="courseFormCancel()">Cancel</button>

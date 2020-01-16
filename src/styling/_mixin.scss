@@ -64,7 +64,7 @@
 }
 
 @mixin input($height, $icon: false) {
-  height: $height;
+  min-height: $height;
   border-radius: 3px;
   border: solid 1px $border-gray;
   background: $white;

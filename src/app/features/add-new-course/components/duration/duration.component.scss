@@ -4,5 +4,10 @@
 .duration {
     &__input {
         @include input(34px);
+        width: 150px;
+
+        &.error {
+            border-color: $red;
+        }
     }
 }

@@ -22,7 +22,7 @@
                 </label>
                 <div class="login__actions">
                     <a href="#" class="login__link">Forgot password?</a>
-                    <button class="login__button" type="submit">Login</button>
+                    <button class="login__button" [disabled]="!loginForm.valid" type="submit">Login</button>
                 </div>
             </form>
         </div>

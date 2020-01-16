@@ -1,2 +1,2 @@
-<input type="text" placeholder="Duration" class="duration__input" value="{{duration}}"/>
-<span class="duration__time">{{duration || duration | timeFormat}}</span>
+<input type="text" [ngClass]="{'error': error?.pattern}" placeholder="Duration" class="duration__input" value="{{duration}}" (input)="change(durationInput.value)" #durationInput/>
+<span class="duration__time" *ngIf="!!duration">{{duration | timeFormat}}</span>

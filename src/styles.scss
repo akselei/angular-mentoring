@@ -14,3 +14,29 @@ $angular-mentoring-theme: mat-light-theme($angular-mentoring-primary, $angular-m
 @import "app/app.component";
 
 html, body { height: 100%; }
+.mat-chip-list-wrapper .mat-standard-chip {
+    margin: 4px;
+}
+.mat-standard-chip {
+    border-radius: 3px !important;
+    background-color: #f2f3f7 !important;
+    color: #6c7283 !important;
+    font-size: 12px;
+    min-height: 28px !important;
+    padding: 3px 0 3px 5px !important;
+
+    .mat-chip-remove,
+    .mat-chip-trailing-icon {
+        text-align: center;
+        margin: 0 !important;
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+
+input.mat-chip-input {
+    margin: 2px 4px !important;
+    padding: 0 2px !important;
+    outline: none;
+    height: 30px;
+}

@@ -3,7 +3,7 @@ import { IAddCourse } from '@features/add-new-course/models/add-course.model';
 
 export interface CourseActionsState {
     isCourseAdded: boolean;
-    course: IAddCourse[] | null;
+    course: IAddCourse | null;
     errorMessage: string | null;
 }
 

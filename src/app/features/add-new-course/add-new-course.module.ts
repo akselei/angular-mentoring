@@ -7,6 +7,8 @@ import { SuggesterComponent } from '@features/add-new-course/components/suggeste
 import { PipesModule } from '@core/pipes/pipes.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatAutocompleteModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
 
 const routes: Routes = [
     { path: '', component: AddNewCourseComponent }
@@ -24,14 +26,27 @@ const routes: Routes = [
         CommonModule,
         PipesModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatChipsModule,
+        MatAutocompleteModule
     ],
     exports: [
         AddNewCourseComponent,
         DateComponent,
         DurationComponent,
         SuggesterComponent,
-        RouterModule
+        RouterModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatChipsModule
+    ],
+    providers: [
+        MatDatepickerModule
     ]
 })
 export class AddNewCourseModule { }

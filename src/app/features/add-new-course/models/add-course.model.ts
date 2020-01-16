@@ -5,4 +5,5 @@ export interface IAddCourse {
     duration?: number;
     description?: string;
     suggester?: object;
+    authors?: any;
 }

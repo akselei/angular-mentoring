@@ -1,1 +1,9 @@
-<input type="text" placeholder="Date" class="date__input" value="{{date}}"/>
+<div class="add-course__date_field date__input">
+    <input type="text"
+           placeholder="Date"
+           value="{{existingDate}}"
+           [matDatepicker]="datePicker"
+           (dateChange)="addNewDate($event)"/>
+    <mat-datepicker-toggle class="icon" matSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+</div>

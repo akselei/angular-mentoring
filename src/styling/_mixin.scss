@@ -63,12 +63,17 @@
   box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
 }
 
-@mixin input($height, $icon: false) {
-  min-height: $height;
+@mixin input($height, $icon: false, $gum: false) {
+  height: $height;
   border-radius: 3px;
   border: solid 1px $border-gray;
   background: $white;
   display: inline-block;
+
+    @if $gum == true {
+        height: auto;
+        min-height: $height;
+    }
 
   @if $icon == left or $icon == right or $icon == true {
     position: relative;

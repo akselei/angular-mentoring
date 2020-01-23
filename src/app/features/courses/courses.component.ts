@@ -5,6 +5,7 @@ import { SearchService } from '@features/services/search/search.service';
 import {DeleteItem, ListRequest, LoadMoreRequest} from '@core/store/courses/actions/courses.actions';
 import { Store } from '@ngrx/store';
 import { AppState, selectCoursesState } from '@core/store/app.states';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-courses',
@@ -26,8 +27,13 @@ export class CoursesComponent implements OnInit, OnDestroy {
         private courseService: CourseService,
         private changeDetection: ChangeDetectorRef,
         private searchService: SearchService,
-        private store: Store<AppState>
-    ) { }
+        private store: Store<AppState>,
+        public translate: TranslateService
+    ) {
+        translate.addLangs(['en', 'fr']);
+        const browserLang = translate.getBrowserLang();
+        translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    }
 
     ngOnInit() {
         this.store.dispatch(new ListRequest(0));

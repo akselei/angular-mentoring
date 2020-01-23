@@ -1,15 +1,20 @@
 <app-search></app-search>
 
 <div class="courses__content">
-  <div class="courses__button">
-    <a class="courses__add-course" [routerLink]="['add-course']">
-      <i class="icon">
-        <span class="one"></span>
-        <span class="two"></span>
-      </i>
-      {{'courses.addCourse'| translate}}
-    </a>
-  </div>
+    <div class="courses__upper_container">
+        <select #langSelect (change)="translate.use(langSelect.value)" class="courses__languages">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
+        <div class="courses__button">
+            <a class="courses__add-course" [routerLink]="['add-course']">
+                <i class="icon">
+                    <span class="one"></span>
+                    <span class="two"></span>
+                </i>
+                {{'courses.addCourse'| translate}}
+            </a>
+        </div>
+    </div>
   <div class="courses__list" *ngIf="dataIsAvailable">
     <app-course-item
             *ngFor="let courseListItem of courseList | orderBy: 'date'"

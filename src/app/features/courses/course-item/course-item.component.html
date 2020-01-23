@@ -30,11 +30,11 @@
     <div class="course__item_buttons">
         <button class="button__edit" [routerLink]="[courseListItem.id, {title: courseListItem?.name}]" >
             <i class="icon"></i>
-            Edit
+            {{'courses.editButton' | translate}}
         </button>
         <button class="button__delete" (click)="deleteCourseItem()">
             <i class="icon"></i>
-            Delete
+            {{'courses.deleteButton' | translate}}
         </button>
     </div>
 </div>

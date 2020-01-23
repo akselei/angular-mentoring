@@ -7,7 +7,7 @@
         <span class="one"></span>
         <span class="two"></span>
       </i>
-      Add course
+      {{'courses.addCourse'| translate}}
     </a>
   </div>
   <div class="courses__list" *ngIf="dataIsAvailable">
@@ -19,11 +19,11 @@
 
     <a title="Load More Button" class="courses__content_load-more-link" [routerLink]="['/']" [queryParams]="{page: page}"
        (click)="loadMoreHandler()">
-      Load More
+        {{'courses.loadMore'| translate}}
     </a>
   </div>
   <div class="courses__list-empty" *ngIf="!dataIsAvailable">
-    NO DATA
+      {{'courses.noData'| translate}}
   </div>
 </div>
 

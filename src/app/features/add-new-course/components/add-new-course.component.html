@@ -1,7 +1,7 @@
 <div class="add-course__wrapper">
     <div class="add-course__container">
         <div class="add-course__header">
-            <h2>New course</h2>
+            <h2>{{'courses.newCourse' | translate}}</h2>
         </div>
 
         <div class="add-course__content">
@@ -9,50 +9,50 @@
                     <label class="add-course__form_label"
                            [ngClass]="{'error-spec': courseForm.get('name').errors?.maxlength}">
                         <span class="add-course__form_title">
-                            <span class="add-course__form_name">Title:</span>
-                            <span class="add-course__form_warn">*required</span>
+                            <span class="add-course__form_name">{{'courses.dialogLabelTitle' | translate}}</span>
+                            <span class="add-course__form_warn">{{'courses.required' | translate}}</span>
                         </span>
-                        <span class="error-message">Should be maximum 50 characters</span>
-                        <input type="text" placeholder="Course title" class="add-course__input" formControlName="name"/>
+                        <span class="error-message">{{'courses.dialogErrorTitle' | translate}}</span>
+                        <input type="text" placeholder="{{'courses.courseTitlePlaceholder' | translate}}" class="add-course__input" formControlName="name"/>
                     </label>
                     <label class="add-course__form_label"
                            [ngClass]="{'error-spec': courseForm.get('description').errors?.maxlength}">
                         <span class="add-course__form_title">
-                            <span class="add-course__form_name">Description:</span>
-                            <span class="add-course__form_warn">*required</span>
+                            <span class="add-course__form_name">{{'courses.dialogLabelDescription' | translate}}</span>
+                            <span class="add-course__form_warn">{{'courses.required' | translate}}</span>
                         </span>
-                        <span class="error-message">Should be maximum 500 characters</span>
+                        <span class="error-message">{{'courses.dialogErrorDescription' | translate}}</span>
 
                         <textarea class="add-course__textarea" formControlName="description"></textarea>
                     </label>
                     <label class="add-course__form_label add-course__duration"
                            [ngClass]="{'error-spec': courseForm.get('length').errors?.pattern}">
                         <span class="add-course__form_title">
-                            <span class="add-course__form_name">Duration:</span>
-                            <span class="add-course__form_warn">*required</span>
+                            <span class="add-course__form_name">{{'courses.dialogLabelDuration' | translate}}</span>
+                            <span class="add-course__form_warn">{{'courses.required' | translate}}</span>
                         </span>
-                        <span class="error-message">should be only numbers in minutes e.g. 120</span>
+                        <span class="error-message">{{'courses.dialogErrorDuration' | translate}}</span>
                         <app-duration [duration]="duration" [error]="courseForm.get('length').errors" formControlName="length"></app-duration>
                     </label>
                     <label class="add-course__form_label add-course__date"
                            [ngClass]="{'error-spec': courseForm.get('date').errors?.dateInvalid && (courseForm.get('date').dirty || courseForm.get('date').touched)}">
                         <span class="add-course__form_title">
-                            <span class="add-course__form_name">Date:</span>
-                            <span class="add-course__form_warn">*required</span>
+                            <span class="add-course__form_name">{{'courses.dialogLabelDate' | translate}}</span>
+                            <span class="add-course__form_warn">{{'courses.required' | translate}}</span>
                         </span>
-                        <span class="error-message">Should be set date by datepicker or in proper format e.g. 1/11/2020</span>
+                        <span class="error-message">{{'courses.dialogErrorDate' | translate}}</span>
                         <app-date [existingDate]="existingDate" [error]="courseForm.get('date').errors" formControlName="date"></app-date>
                     </label>
                     <label class="add-course__form_label add-course__suggester" [ngClass]="{'error-spec': courseForm.get('authors').errors}">
                     <span class="add-course__form_title">
-                        <span class="add-course__form_name">Author:</span>
-                        <span class="add-course__form_warn">*required</span>
+                        <span class="add-course__form_name">{{'courses.dialogLabelAuthor' | translate}}</span>
+                        <span class="add-course__form_warn">{{'courses.required' | translate}}</span>
                     </span>
                         <app-suggester [existingId]="id" class="add-course__flex" formControlName="authors"></app-suggester>
                     </label>
                     <div class="add-course__actions">
-                        <button class="add-course__button_cancel" (click)="courseFormCancel()">Cancel</button>
-                        <button class="add-course__button_save" [disabled]="!courseForm.valid" (click)="courseFormSubmit()">Save</button>
+                        <button class="add-course__button_cancel" (click)="courseFormCancel()">{{'courses.cancelButton' | translate}}</button>
+                        <button class="add-course__button_save" [disabled]="!courseForm.valid" (click)="courseFormSubmit()">{{'courses.saveButton' | translate}}</button>
                     </div>
             </form>
         </div>

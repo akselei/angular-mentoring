@@ -13,6 +13,7 @@ import { AuthModule } from '@features/auth/auth.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import * as fromComponents from '.';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     declarations: [...fromComponents.components],
@@ -28,7 +29,8 @@ import * as fromComponents from '.';
         RouterModule,
         AddNewCourseModule,
         AuthModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        TranslateModule
     ],
     entryComponents: [
         DeleteDialogComponent

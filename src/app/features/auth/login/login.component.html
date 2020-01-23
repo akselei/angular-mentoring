@@ -1,28 +1,28 @@
 <div class="login__wrapper">
     <div class="login__container">
         <div class="login__header">
-            <h2 class="login__title">Login</h2>
+            <h2 class="login__title">{{'courses.login' | translate}}</h2>
             <div class="login__error">{{error}}</div>
         </div>
         <div class="login__content">
             <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <label class="login__form_label">
                     <span class="login__form_title">
-                        <span class="login__form_name">E-mail:</span>
-                        <span class="login__form_warn">*required</span>
+                        <span class="login__form_name">{{'courses.email' | translate}}</span>
+                        <span class="login__form_warn">{{'courses.required' | translate}}</span>
                     </span>
-                    <input type="text" placeholder="Enter e-mail" class="login__input" formControlName="login"/>
+                    <input type="text" placeholder="{{'courses.emailPlaceholder' | translate}}" class="login__input" formControlName="login"/>
                 </label>
                 <label class="login__form_label">
                     <span class="login__form_title">
-                        <span class="login__form_name">Password:</span>
-                        <span class="login__form_warn">*required</span>
+                        <span class="login__form_name">{{'courses.password' | translate}}</span>
+                        <span class="login__form_warn">{{'courses.required' | translate}}</span>
                     </span>
-                    <input type="password" placeholder="Enter password" class="login__input" formControlName="password"/>
+                    <input type="password" placeholder="{{'courses.passwordPlaceholder' | translate}}" class="login__input" formControlName="password"/>
                 </label>
                 <div class="login__actions">
-                    <a href="#" class="login__link">Forgot password?</a>
-                    <button class="login__button" [disabled]="!loginForm.valid" type="submit">Login</button>
+                    <a href="#" class="login__link">{{'courses.forgotPassword' | translate}}</a>
+                    <button class="login__button" [disabled]="!loginForm.valid" type="submit">{{'courses.login' | translate}}</button>
                 </div>
             </form>
         </div>

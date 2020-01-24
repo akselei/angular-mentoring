@@ -63,4 +63,11 @@
       left: 25px;
     }
   }
+    &__upper_container {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__languages {
+        @include input(36px);
+    }
 }

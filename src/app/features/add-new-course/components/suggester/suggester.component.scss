@@ -3,7 +3,7 @@
 
 .suggester {
     &__input {
-        @include input(34px);
+        @include input(34px, $gum: true);
         padding: 2px;
         flex: 0 100%;
 

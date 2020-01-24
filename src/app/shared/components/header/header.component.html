@@ -4,15 +4,13 @@
 <div class="header__sighup">
     <div class="login__content">
         <i class="icon"></i>
-        <a class="login__link" [routerLink]="['login']" *ngIf="!userAvailable">Log In</a>
+        <a class="login__link" [routerLink]="['login']" *ngIf="!userAvailable">{{'courses.loginButton' | translate}}</a>
         <div class="login__user" *ngIf="userAvailable">
-            Hello,
-            {{user.first}}
-            {{user.last}}
+            {{'courses.loginGreetings' | translate:{value: user} }}
         </div>
     </div>
     <div class="logout__content">
         <i class="icon"></i>
-        <a title="Sigh out" class="logout__link" (click)="logout()">Log off</a>
+        <a title="Sigh out" class="logout__link" (click)="logout()">{{'courses.logoutButton' | translate}}</a>
     </div>
 </div>

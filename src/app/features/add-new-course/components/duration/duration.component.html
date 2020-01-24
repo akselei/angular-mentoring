@@ -1,2 +1,2 @@
-<input type="text" [ngClass]="{'error': error?.pattern}" placeholder="Duration" class="duration__input" value="{{duration}}" (input)="change(durationInput.value)" #durationInput/>
+<input type="text" [ngClass]="{'error': error?.pattern}" placeholder="{{'courses.durationPlaceholder' | translate}}" class="duration__input" value="{{duration}}" (input)="change(durationInput.value)" #durationInput/>
 <span class="duration__time" *ngIf="!!duration">{{duration | timeFormat}}</span>

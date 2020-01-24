@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatAutocompleteModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
+import {TranslateModule} from '@ngx-translate/core';
 
 const routes: Routes = [
     { path: '', component: AddNewCourseComponent }
@@ -32,7 +33,8 @@ const routes: Routes = [
         MatFormFieldModule,
         MatInputModule,
         MatChipsModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        TranslateModule
     ],
     exports: [
         AddNewCourseComponent,
